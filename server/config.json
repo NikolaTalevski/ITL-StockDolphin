@@ -1,0 +1,18 @@
+{
+    "development": {
+        "port": 3000,
+        "MONGO_USERNAME": "ntalevski00",
+        "MONGO_PASSWORD": "ntalevski",
+        "jwt": "secret"
+    },
+    "integration": {
+        "port": 9000,
+        "MONGO_USERNAME": "tester",
+        "MONGO_PASSWORD": "testerpass"
+    },
+    "production": {
+        "port": 8080,
+        "MONGO_USERNAME": "admin",
+        "MONGO_PASSWORD": "adminpass"
+    }
+}
