@@ -2,12 +2,12 @@ const { Validator } = require("node-input-validator");
 
 const categoryPOST = {
     name: 'required|string',
-    image: 'required|buffer'
+    image: 'string'
 };
 
 const categoryPUT = {
     name: 'required|string',
-    image: 'required|buffer'
+    image: 'string'
 };
 
 const validate = async(data, schema) => {

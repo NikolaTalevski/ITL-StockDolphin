@@ -17,7 +17,7 @@ const getAllOrdersHandler = async(req, res) => {
 
 const getOneOrderHandler = async(req, res) => {
     try{
-        const ord = await orders.getOneOrder(req.auth.id, req.params.id);
+        const ord = await orders.getOneOrder( req.params.id);
         if(!ord) {
             throw {
                 code: 404,

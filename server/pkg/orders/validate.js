@@ -2,16 +2,16 @@ const { Validator } = require("node-input-validator");
 
 const orderPOST = {
     supplier: 'required|string',
-    quantity: 'required|number',
-    price: 'required|number',
-    date: 'required|date'
+    quantity: 'required|string',
+    price: 'required|string',
+    date: 'date'
 };
 
 const orderPUT = {
-    supplier: 'required|string',
-    quantity: 'required|number',
-    price: 'required|number',
-    date: 'required|date'
+    supplier: 'string',
+    quantity: 'string',
+    price: 'string',
+    date: 'date'
 };
 
 const validate = async(data, schema) => {

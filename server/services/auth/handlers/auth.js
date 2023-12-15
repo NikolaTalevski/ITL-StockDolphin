@@ -22,7 +22,7 @@ const register = async(req, res) => {
         req.body.password = bcrypt.hashSync(req.body.password);
         let u = await user.createUser(req.body);
         return res.status(201).send(u);
-    } catch {
+    } catch(err) {
         console.log(err);
         return res.status(err.code).send(err.error);
     }
@@ -52,7 +52,7 @@ const login = async(req, res) => {
         };
         const token = jwt.sign(payload, config.getSection("development").jwt)
         return res.status(200).send({token});
-    } catch {
+    } catch (err) {
         console.log(err);
         return res.status(err.code).send(err.error);
     }

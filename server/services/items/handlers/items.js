@@ -17,7 +17,7 @@ const getAllItemsHandler = async(req, res) => {
 
 const getOneItemHandler = async(req, res) => {
     try{
-        const itm = await items.getOneItem(req.auth.id, req.params.id);
+        const itm = await items.getOneItem(req.params.id);
         if(!itm) {
             throw {
                 code: 404,

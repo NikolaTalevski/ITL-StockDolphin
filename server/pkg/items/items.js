@@ -8,8 +8,8 @@ const getAllItems = async() => {
     return await Item.find({});
 };
 
-const getOneItem = async(id) => {
-    return await Item.findOne({_id: id});
+const getOneItem = async( id) => {
+    return await Item.findOne({ _id: id});
 };
 
 const createItem = async(i) => {

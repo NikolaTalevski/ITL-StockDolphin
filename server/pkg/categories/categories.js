@@ -4,12 +4,12 @@ const {
     Category
 } = require("./model");
 
-const getAllCategories = async() => {
-    return await Category.find({});
+const getAllCategories = async(user_id) => {
+    return await Category.find({ user_id });
 };
 
-const getOneCategory = async(id) => {
-    return await Category.findOne({_id: id});
+const getOneCategory = async(user_id, id) => {
+    return await Category.findOne({ user_id: user_id ,_id: id});
 };
 
 const createCategory = async(c) => {

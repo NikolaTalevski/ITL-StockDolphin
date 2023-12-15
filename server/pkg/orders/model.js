@@ -1,13 +1,16 @@
 const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
+    item: String,
     supplier: String,
-    quantity: Number,
-    price: Number,
+    quantity: String,
+    price: String,
     date: Date,
-})
+}, {
+    timestamps: true
+});
 
-const Order = mongoose.model("Orders", orderSchema);
+const Order = mongoose.model("orders", orderSchema, "orders");
 
 module.exports = {
     Order 
