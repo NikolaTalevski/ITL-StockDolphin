@@ -1,7 +1,8 @@
 const {
     UserSignUp,
     UserLogin,
-    validate
+    validate,
+    UserPasswordReset
 } = require('../../../pkg/users/validate');
 
 const user = require('../../../pkg/users/users');
@@ -58,7 +59,44 @@ const login = async(req, res) => {
     }
 };
 
+const refreshToken = async(req, res) => {
+    const payload = {
+        ...req.auth,
+        exp: new Date().getTime() / 1000 + 7 * 24 * 60 * 60
+    };
+    const token = jwt.sign(payload, config.getSection("development").jwt);
+    return res.status(200).send(token);
+};
+
+const resetPassword = async(req, res) => {
+    await validate(req.body, UserPasswordReset);
+    const {email, old_password, new_password} = req.body;
+
+    const u = await user.getByEmailUser(email);
+
+    if(!bcrypt.compareSync(old_password, u.password)) {
+        return res.status(400).send("Incorrect password");
+    }
+
+    const newPasswordHashed = bcrypt.hashSync(new_password);
+
+    if(old_password === new_password) {
+        return res.status(400).send("New password can't be the old password");
+    }
+
+    const passwordChanged = await user.setNewPassword(
+        u._id.toString(),
+        newPasswordHashed
+    );
+
+    return res.status(200).send(passwordChanged);
+};
+
+
+
 module.exports = {
     register,
-    login
+    login,
+    refreshToken,
+    resetPassword
 }

@@ -3,29 +3,26 @@ require("../../pkg/db");
 
 const express = require("express");
 const { expressjwt: jwt } = require("express-jwt");
-const auth = require("./handlers/auth");
+const fileUpload = require("express-fileupload");
+const storage = require("./handlers/storage");
 
 const api = express();
 
 api.use(express.json());
+api.use(fileUpload());
 api.use(jwt({
     secret: config.getSection("development").jwt,
-    algorithms: ["HS256"],
-}).unless({
-    path: [
-        "/api/v1/auth/register",
-        "/api/v1/auth/login",
-        "/api/v1/auth/resetPassword"
-    ]
+    algorithms: ["HS256"]
 }));
 
-api.post("/api/v1/auth/register", auth.register); // raboti
-api.post("/api/v1/auth/login", auth.login); // raboti 
-api.post("/api/v1/auth/refreshToken", auth.refreshToken);
-api.post("/api/v1/auth/resetPassword", auth.resetPassword);
+
+api.post("/api/v1/storage", storage.upload);
+api.get("/api/v1/storage/:filename", storage.download);
+api.get("/api/v1/storage", storage.listFiles);
+api.delete("/api/v1/storage/:filename", storage.removeFile);
 
 api.use(function (err, req, res, next) {
-    if (err.name === "UnauthorizedAccess"){
+    if (err.name === "UnauthorizedAccess") {
         res.status(401).send("Invalid token");
     }
 });

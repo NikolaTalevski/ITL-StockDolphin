@@ -12,6 +12,12 @@ const UserLogin = {
     password: 'required|string'
 }
 
+const UserPasswordReset = {
+    email: 'required|string',
+    old_password: 'required|string',
+    new_password: 'required|string'
+}
+
 const validate = async(data, schema) => {
     let v = new Validator(data, schema);
     let e = v.check();
@@ -26,5 +32,6 @@ const validate = async(data, schema) => {
 module.exports = {
     UserSignUp,
     UserLogin,
-    validate
+    validate,
+    UserPasswordReset
 }

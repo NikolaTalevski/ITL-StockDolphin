@@ -29,11 +29,16 @@ const removeUser = async(id) => {
     return await User.deleteOne({_id: id});
 };
 
+const setNewPassword = async(id, new_password) => {
+    return await User.updateOne({_id: id}, {password: new_password});
+};
+
 module.exports = {
     getAllUsers,
     getOneUser,
     getByEmailUser,
     createUser,
     updateUser,
-    removeUser
+    removeUser,
+    setNewPassword
 }
