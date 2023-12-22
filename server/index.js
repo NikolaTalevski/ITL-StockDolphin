@@ -10,6 +10,7 @@ const category = require("./services/categories/handlers/categories");
 const item = require("./services/items/handlers/items");
 const order = require("./services/orders/handlers/orders");
 const storage = require("./services/storage/handlers/storage");
+const invoice = require("./services/invoices/handlers/invoices");
 
 const api = express();
 
@@ -53,6 +54,12 @@ api.post("/api/v1/storage", storage.upload);
 api.get("/api/v1/storage/:filename", storage.download);
 api.get("/api/v1/storage", storage.listFiles);
 api.delete("/api/v1/storage/:filename", storage.removeFile);
+
+api.get("/api/v1/invoice", invoice.getAllInvoicesHandler);
+api.get("/api/v1/invoice/:id", invoice.getOneInvoiceHandler);
+api.post("/api/v1/invoice", invoice.createInvoiceHandler);
+api.put("/api/v1/invoice/:id", invoice.updateInvoiceHandler);
+api.delete("/api/v1/invoice/:id", invoice.removeInvoiceHandler);
 
 
 api.use(function (err, req, res, next) {
