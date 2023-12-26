@@ -29,8 +29,8 @@ api.use(jwt({
 
 api.post("/api/v1/auth/register", auth.register); // raboti
 api.post("/api/v1/auth/login", auth.login); // raboti
-api.post("/api/v1/auth/refreshToken", auth.refreshToken);
-api.post("/api/v1/auth/resetPassword", auth.resetPassword);
+api.post("/api/v1/auth/refreshToken", auth.refreshToken); // raboti
+api.post("/api/v1/auth/resetPassword", auth.resetPassword); // raboti
 
 api.get("/api/v1/category", category.getAllCategoriesHandler); // raboti
 api.get("/api/v1/category/:id", category.getOneCategoryHandler); //raboti
@@ -50,16 +50,16 @@ api.post("/api/v1/order", order.createOrderHandler); // raboti
 api.put("/api/v1/order/:id", order.updateOrderHandler); // raboti
 api.delete("/api/v1/order/:id", order.removeOrderHandler); // raboti
 
-api.post("/api/v1/storage", storage.upload);
-api.get("/api/v1/storage/:filename", storage.download);
-api.get("/api/v1/storage", storage.listFiles);
-api.delete("/api/v1/storage/:filename", storage.removeFile);
+api.post("/api/v1/storage", storage.upload); // raboti
+api.get("/api/v1/storage/:filename", storage.download); // raboti
+api.get("/api/v1/storage", storage.listFiles); // raboti
+api.delete("/api/v1/storage/:filename", storage.removeFile); // raboti
 
-api.get("/api/v1/invoice", invoice.getAllInvoicesHandler);
-api.get("/api/v1/invoice/:id", invoice.getOneInvoiceHandler);
-api.post("/api/v1/invoice", invoice.createInvoiceHandler);
-api.put("/api/v1/invoice/:id", invoice.updateInvoiceHandler);
-api.delete("/api/v1/invoice/:id", invoice.removeInvoiceHandler);
+api.get("/api/v1/invoice", invoice.getAllInvoicesHandler); // raboti
+api.get("/api/v1/invoice/:id", invoice.getOneInvoiceHandler); // raboti
+api.post("/api/v1/invoice", invoice.createInvoiceHandler); // raboti
+api.put("/api/v1/invoice/:id", invoice.updateInvoiceHandler); // raboti
+api.delete("/api/v1/invoice/:id", invoice.removeInvoiceHandler); // raboti
 
 
 api.use(function (err, req, res, next) {

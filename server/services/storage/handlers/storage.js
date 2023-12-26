@@ -1,7 +1,7 @@
 const fs = require("fs");
 const strings = require("../../../pkg/strings");
 
-const MAX_FILESIZE = 2097152;
+const MAX_FILESIZE = 1048576;
 const ALLOWED_FILETYPES = [
     "image/jpg",
     "image/jpeg",
@@ -12,7 +12,7 @@ const ALLOWED_FILETYPES = [
 
 const upload = async(req, res) => {
     if(MAX_FILESIZE < req.files.document.size) {
-        return res.status(400).send("File exceeds max file size");
+        return res.status(400).send('File exceeds max file size');
     }
     if(!ALLOWED_FILETYPES.includes(req.files.document.mimetype)) {
         return res.status(400).send("File type is not allowed");
@@ -28,7 +28,7 @@ const upload = async(req, res) => {
     const fileName = `${strings.makeID(6)}_${req.files.document.name}`;
     const filePath = `${userDirPath}/${fileName}`;
 
-    req.files.document.mv(filePath, err => {
+    req.files.document.mv(filePath, (err) => {
         if(err) {
             return res.status(500).send("Internal server error");
         }

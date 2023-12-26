@@ -5,6 +5,8 @@ const invoiceSchema = new mongoose.Schema({
     supplier: String,
     date: Date,
     orders: String
+}, {
+    timestamps: true
 });
 
 const Invoice = mongoose.model("invoices", invoiceSchema, "invoices");

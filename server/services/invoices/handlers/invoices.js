@@ -17,7 +17,7 @@ const getAllInvoicesHandler = async(req, res) => {
 
 const getOneInvoiceHandler = async(req, res) => {
     try{
-        const inv = await invoices.getOneInvoice(req.auth.id, req.params.id);
+        const inv = await invoices.getOneInvoice(req.params.id);
         if(!inv) {
             throw {
                 code: 400,
