@@ -51,7 +51,7 @@ const login = async(req, res) => {
             id: u._id,
             exp: new Date().getTime() / 1000 + 7 * 24 * 60 * 60
         };
-        const token = jwt.sign(payload, config.getSection("development").jwt)
+        const token = jwt.sign(payload, config.getSection("security").jwt)
         return res.status(200).send({token});
     } catch (err) {
         console.log(err);
@@ -64,7 +64,7 @@ const refreshToken = async(req, res) => {
         ...req.auth,
         exp: new Date().getTime() / 1000 + 7 * 24 * 60 * 60
     };
-    const token = jwt.sign(payload, config.getSection("development").jwt);
+    const token = jwt.sign(payload, config.getSection("security").jwt);
     return res.status(200).send(token);
 };
 

@@ -9,7 +9,7 @@ const api = express();
 
 api.use(express.json());
 api.use(jwt({
-    secret: config.getSection("development").jwt,
+    secret: config.getSection("security").jwt,
     algorithms: ["HS256"]
 }));
 
@@ -25,7 +25,7 @@ api.use(function (err, req, res, next) {
     }
 });
 
-api.listen(config.getSection("development").port, (err) => {
+api.listen(config.getSection("services").invoices.port, (err) => {
     if (err) return console.log(err);
-    console.log(`Server started on port ${config.getSection("development").port}`);
+    console.log(`Server started on port ${config.getSection("services").invoices.port}`);
 });
