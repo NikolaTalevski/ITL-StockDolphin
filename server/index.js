@@ -16,16 +16,18 @@ const api = express();
 
 api.use(express.json());
 api.use(fileUpload());
-api.use(jwt({
-    secret: config.getSection("development").jwt,
+api.use(
+  jwt({
+    secret: config.getSection("security").jwt,
     algorithms: ["HS256"],
-}).unless({
+  }).unless({
     path: [
-        "/api/v1/auth/register",
-        "/api/v1/auth/login",
-        "/api/v1/auth/resetPassword"
-    ]
-}));
+      "/api/v1/auth/register",
+      "/api/v1/auth/login",
+      "/api/v1/auth/resetPassword",
+    ],
+  })
+);
 
 api.post("/api/v1/auth/register", auth.register); // raboti
 api.post("/api/v1/auth/login", auth.login); // raboti
@@ -61,14 +63,50 @@ api.post("/api/v1/invoice", invoice.createInvoiceHandler); // raboti
 api.put("/api/v1/invoice/:id", invoice.updateInvoiceHandler); // raboti
 api.delete("/api/v1/invoice/:id", invoice.removeInvoiceHandler); // raboti
 
-
 api.use(function (err, req, res, next) {
-    if (err.name === "UnauthorizedAccess"){
-        res.status(401).send("Invalid token");
-    }
+  if (err.name === "UnauthorizedAccess") {
+    res.status(401).send("Invalid token");
+  }
 });
 
-api.listen(config.getSection("development").port, (err) => {
-    if (err) return console.log(err);
-    console.log(`Server started on port ${config.getSection("development").port}`);
-}); 
+api.listen(config.getSection("services").auth.port, (err) => {
+  if (err) return console.log(err);
+  console.log(
+    `Server started on port ${config.getSection("services").auth.port}`
+  );
+});
+
+api.listen(config.getSection("services").categories.port, (err) => {
+  if (err) return console.log(err);
+  console.log(
+    `Server started on port ${config.getSection("services").categories.port}`
+  );
+});
+
+api.listen(config.getSection("services").items.port, (err) => {
+  if (err) return console.log(err);
+  console.log(
+    `Server started on port ${config.getSection("services").items.port}`
+  );
+});
+
+api.listen(config.getSection("services").orders.port, (err) => {
+  if (err) return console.log(err);
+  console.log(
+    `Server started on port ${config.getSection("services").orders.port}`
+  );
+});
+
+api.listen(config.getSection("services").storage.port, (err) => {
+  if (err) return console.log(err);
+  console.log(
+    `Server started on port ${config.getSection("services").storage.port}`
+  );
+});
+
+api.listen(config.getSection("services").invoices.port, (err) => {
+  if (err) return console.log(err);
+  console.log(
+    `Server started on port ${config.getSection("services").invoices.port}`
+  );
+});
