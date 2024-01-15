@@ -11,6 +11,7 @@ const item = require("./services/items/handlers/items");
 const order = require("./services/orders/handlers/orders");
 const storage = require("./services/storage/handlers/storage");
 const invoice = require("./services/invoices/handlers/invoices");
+const supplier = require("./services/suppliers/handlers/suppliers");
 
 const api = express();
 
@@ -63,8 +64,14 @@ api.post("/api/v1/invoice", invoice.createInvoiceHandler); // raboti
 api.put("/api/v1/invoice/:id", invoice.updateInvoiceHandler); // raboti
 api.delete("/api/v1/invoice/:id", invoice.removeInvoiceHandler); // raboti
 
+api.get("/api/v1/supplier", supplier.getAllSuppliersHandler);
+api.get("/api/v1/supplier", supplier.getOneSupplierHandler);
+api.post("/api/v1/supplier", supplier.createSupplierHandler);
+api.put("/api/v1/supplier", supplier.updateSupplierHandler);
+api.delete("/api/v1/supplier", supplier.removeSupplierHandler);
+
 api.use(function (err, req, res, next) {
-  if (err.name === "UnauthorizedAccess") {
+  if (err.name === "Unauthorized action") {
     res.status(401).send("Invalid token");
   }
 });
@@ -94,6 +101,13 @@ api.listen(config.getSection("services").orders.port, (err) => {
   if (err) return console.log(err);
   console.log(
     `Server started on port ${config.getSection("services").orders.port}`
+  );
+});
+
+api.listen(config.getSection("services").suppliers.port, (err) => {
+  if (err) return console.log(err);
+  console.log(
+    `Server started on port ${config.getSection("services").suppliers.port}`
   );
 });
 

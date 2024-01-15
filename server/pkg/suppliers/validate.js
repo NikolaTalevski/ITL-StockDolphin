@@ -1,30 +1,32 @@
 const { Validator } = require("node-input-validator");
 
 const supplierPOST = {
-    address: 'required|string',
-    phonenumber: 'required|number',
-    email: 'required|string'
+  name: "required|string",
+  address: "required|string",
+  phonenumber: "required|number",
+  email: "required|string",
 };
 
 const supplierPUT = {
-    address: 'required|string',
-    phonenumber: 'required|number',
-    email: 'required|string'
+  name: "string",
+  address: "string",
+  phonenumber: "number",
+  email: "string",
 };
 
-const validate = async(data, schema) => {
-    let v = new Validator(data, schema);
-    let e = v.check();
-    if(!e) {
-        throw {
-            code: 400,
-            error: v.errors,
-        };
-    }
+const validate = async (data, schema) => {
+  let v = new Validator(data, schema);
+  let e = v.check();
+  if (!e) {
+    throw {
+      code: 400,
+      error: v.errors,
+    };
+  }
 };
 
 module.exports = {
-    supplierPOST,
-    supplierPUT,
-    validate
-}
+  supplierPOST,
+  supplierPUT,
+  validate,
+};
