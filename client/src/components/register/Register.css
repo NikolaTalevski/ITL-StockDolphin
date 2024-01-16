@@ -1,0 +1,72 @@
+.register {
+    width: 300px;
+    height: 400px;
+    background-color: rgb(113, 250, 113);
+    margin: 0 auto;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.input-field {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.btn {
+    margin-top: 15px;
+    width: 75px;
+    background-color: grey;
+    color: white;
+    font-size: 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.btn:hover {
+    cursor: pointer;
+    font-size: 17px;
+    background-color: rgb(180, 176, 176);
+}
+
+.btn-signin a {
+    font-size: 13px;
+    padding: 3px;
+    text-decoration: none;
+    color: white;
+    background-color: grey;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.btn-signin a:hover {
+    cursor: pointer;
+    font-size: 15px;
+    background-color: rgb(180, 176, 176);
+}
+
+.success {
+    width: 300px;
+    height: 100px;
+    background-color: rgb(111, 252, 111);
+    margin: 0 auto;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.success p a {
+    font-size: 13px;
+    padding: 3px;
+    text-decoration: none;
+    color: white;
+    background-color: grey;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.success p a:hover {
+    cursor: pointer;
+    font-size: 15px;
+    background-color: rgb(180, 176, 176);
+}
