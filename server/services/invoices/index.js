@@ -8,10 +8,12 @@ const invoice = require("./handlers/invoices");
 const api = express();
 
 api.use(express.json());
-api.use(jwt({
+api.use(
+  jwt({
     secret: config.getSection("security").jwt,
-    algorithms: ["HS256"]
-}));
+    algorithms: ["HS256"],
+  })
+);
 
 api.get("/api/v1/invoice", invoice.getAllInvoicesHandler);
 api.get("/api/v1/invoice/:id", invoice.getOneInvoiceHandler);
@@ -20,12 +22,15 @@ api.put("/api/v1/invoice/:id", invoice.updateInvoiceHandler);
 api.delete("/api/v1/invoice/:id", invoice.removeInvoiceHandler);
 
 api.use(function (err, req, res, next) {
-    if (err.name === "UnauthorizedAccess") {
-        res.status(401).send("Invalid token");
-    }
+  console.log("Invoice test" + err);
+  if (err.name === "UnauthorizedError") {
+    res.status(401).send("Invalid token");
+  }
 });
 
 api.listen(config.getSection("services").invoices.port, (err) => {
-    if (err) return console.log(err);
-    console.log(`Server started on port ${config.getSection("services").invoices.port}`);
+  if (err) return console.log(err);
+  console.log(
+    `Server started on port ${config.getSection("services").invoices.port}`
+  );
 });

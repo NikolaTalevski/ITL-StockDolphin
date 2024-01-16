@@ -2,8 +2,9 @@ const suppliers = require("../../../pkg/suppliers/suppliers");
 const {
   supplierPOST,
   supplierPUT,
-  validate,
-} = require("../../../pkg/suppliers/validate");
+} = require("../../../pkg/suppliers/suppliers-validate");
+
+const { validate } = require("../../../pkg/utils/validate");
 
 const getAllSuppliersHandler = async (req, res) => {
   try {
@@ -35,7 +36,7 @@ const createSupplierHandler = async (req, res) => {
   try {
     await validate(req.body, supplierPOST);
     if (!req.auth.id) {
-      return res.status(400).send("Unauthorized action");
+      return res.status(400).send("Unauthorized Action");
     }
     const data = {
       ...req.body,
@@ -53,7 +54,7 @@ const updateSupplierHandler = async (req, res) => {
   try {
     await validate(req.body, supplierPUT);
     if (!req.auth.id) {
-      return res.status(400).send("Unauthorized action");
+      return res.status(400).send("Unauthorized Action");
     }
     const data = {
       ...req.body,

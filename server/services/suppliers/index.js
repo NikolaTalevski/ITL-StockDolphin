@@ -22,7 +22,7 @@ api.put("/api/v1/supplier", supplier.updateSupplierHandler);
 api.delete("/api/v1/supplier", supplier.removeSupplierHandler);
 
 api.use(function (err, req, res, next) {
-  if (err.name === "UnauthorizedAccess") {
+  if (err.name === "UnauthorizedError") {
     res.status(401).send("Invalid token");
   }
 });
