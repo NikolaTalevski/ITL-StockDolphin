@@ -6,6 +6,8 @@ import Inventory from "../pages/Inventory";
 import Reports from "../pages/Reports";
 import Suppliers from "../pages/Suppliers";
 import Login from "../login/Login";
+import Activityhistory from "../pages/Activityhistory";
+import Inventorysummary from "../pages/Inventorysummary";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -19,7 +21,13 @@ const Navbar = () => {
             alt="logo"
           />
         </div>
-        <button className="grid">
+        <div className="grid">
+          <img
+            src={require("../../images/dashboard.png")}
+            alt="dashboard"
+            width={50}
+            height={50}
+          />
           <NavLink
             className="navlink"
             // className={({ isActive }) => (isActive ? "link active" : "link")}
@@ -27,13 +35,25 @@ const Navbar = () => {
           >
             Dashboard
           </NavLink>
-        </button>
+        </div>
         <div className="grid">
+          <img
+            src={require("../../images/inventory.png")}
+            alt="inventory"
+            width={50}
+            height={50}
+          />
           <NavLink className="navlink" to="/inventory">
             Inventory
           </NavLink>
         </div>
         <div className="grid">
+          <img
+            src={require("../../images/reports.png")}
+            alt="reports"
+            width={50}
+            height={50}
+          />
           <NavLink className="navlink" to="/reports">
             Reports
           </NavLink>
@@ -44,6 +64,12 @@ const Navbar = () => {
           </NavLink>
         </div>
         <div className="signin">
+          <img
+            src={require("../../images/power.png")}
+            alt="power"
+            width={50}
+            height={50}
+          />
           <NavLink className="navlink" to="/login">
             Sign In
           </NavLink>
@@ -55,6 +81,14 @@ const Navbar = () => {
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/suppliers" element={<Suppliers />} />
+          <Route
+            path="/reports/activityhistory"
+            element={<Activityhistory />}
+          />
+          <Route
+            path="/reports/inventorysummary"
+            element={<Inventorysummary />}
+          />
           <Route path="/login" element={<Login />} />
         </Routes>
       </div>

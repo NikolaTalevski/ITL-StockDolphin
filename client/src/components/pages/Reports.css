@@ -1,0 +1,24 @@
+.activityhistory {
+    display: flex;
+}
+
+.inventorysummary {
+    display: flex;
+}
+
+.reports {
+    margin-top: 100px;
+    margin-left: 100px;
+}
+
+.activitylink {
+    text-decoration: none;
+    color: black;
+    font-size: 25px;
+}
+
+.inventorysummarylink {
+    text-decoration: none;
+    color: black;
+    font-size: 25px;
+}

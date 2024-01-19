@@ -1,14 +1,14 @@
 import React from "react";
 
-const Inventory = () => {
+const Inventorysummary = () => {
   return (
     <div>
       <header className="header">
-        <h1>Inventory </h1>
+        <h1>Reports > Inventory Summary</h1>
         <hr></hr>
       </header>
     </div>
   );
 };
 
-export default Inventory;
+export default Inventorysummary;

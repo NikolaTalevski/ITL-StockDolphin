@@ -1,14 +1,14 @@
 import React from "react";
 
-const Inventory = () => {
+const Activityhistory = () => {
   return (
     <div>
       <header className="header">
-        <h1>Inventory </h1>
+        <h1>Reports > Activity History</h1>
         <hr></hr>
       </header>
     </div>
   );
 };
 
-export default Inventory;
+export default Activityhistory;
