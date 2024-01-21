@@ -1,0 +1,20 @@
+.add-btn {
+    background-color: rgb(21, 157, 21);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    width: 170px;
+    margin-top: 50px;
+    margin-right: 100px;
+}
+
+.add-btn:hover {
+    cursor: pointer;
+    width: 180px;
+    font-size: 15px;
+}
+
+.add-btn > * {
+    vertical-align: middle;
+}

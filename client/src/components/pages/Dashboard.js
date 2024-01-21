@@ -1,11 +1,16 @@
 import React from "react";
-import CategoryCard from "../cards/Category-Card";
-import ItemCard from "../cards/Item-Card";
-import OrderCard from "../cards/Order-Card";
-import CostCard from "../cards/Cost-Card";
+import CategoryCard from "../cards/SummaryCard/Category-Card";
+import TotalItemCard from "../cards/SummaryCard/Total-Item-Card";
+import OrderCard from "../cards/SummaryCard/Order-Card";
+import CostCard from "../cards/SummaryCard/Cost-Card";
 import "./Dashboard.css";
+import ItemCard from "../cards/RecentOrderCard/ItemCard";
 
 const Dashboard = () => {
+  const mouse = require("../../images/mouse.png");
+  const a4paper = require("../../images/a4paper.png");
+  const espresso = require("../../images/espresso.png");
+  const pens = require("../../images/pens.png");
   return (
     <div>
       <header className="header">
@@ -17,7 +22,7 @@ const Dashboard = () => {
         <h4>Inventory summary</h4>
         <div className="cards">
           <CategoryCard />
-          <ItemCard />
+          <TotalItemCard />
           <OrderCard />
           <CostCard />
         </div>
@@ -41,6 +46,35 @@ const Dashboard = () => {
             Admin has moved item <b>Mouse </b>in
             <b> Office Supply (Office Category)</b>
           </p>
+        </div>
+      </div>
+      <div className="recent-orders">
+        <h4>Recent orders</h4>
+        <div className="recent-orders-cards">
+          <ItemCard
+            img={mouse}
+            title={"Office Mouse"}
+            items={"7 Units"}
+            price={"$133.00"}
+          />
+          <ItemCard
+            img={a4paper}
+            title={"A4 Paper"}
+            items={"917 Unit"}
+            price={"$28.00"}
+          />
+          <ItemCard
+            img={espresso}
+            title={"Espresso"}
+            items={"3 Unit"}
+            price={"$22.00"}
+          />
+          <ItemCard
+            img={pens}
+            title={"Office Pens"}
+            items={"66 Unit"}
+            price={"$17.00"}
+          />
         </div>
       </div>
     </div>

@@ -1,28 +1,28 @@
 import React from "react";
-import "./Cost-Card.css";
+import "./SummaryCard.css";
 
-const CostCard = () => {
+const SummaryCard = ({ img, number, description }) => {
   return (
     <div className="card">
       <div className="top">
         <img
-          src={require("../../images/cost-icon.png")}
-          alt="cost"
-          className="cost"
+          src={img}
+          alt={description}
+          className="cardImg"
           width={30}
           height={30}
         />
       </div>
       <div className="middle">
         <p>
-          <b>$1.250k</b>
+          <b>{number}</b>
         </p>
       </div>
       <div className="bottom">
-        <p>Total Cost</p>
+        <p>{description}</p>
       </div>
     </div>
   );
 };
 
-export default CostCard;
+export default SummaryCard;

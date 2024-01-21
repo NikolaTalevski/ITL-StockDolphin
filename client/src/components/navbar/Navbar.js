@@ -25,8 +25,8 @@ const Navbar = () => {
           <img
             src={require("../../images/dashboard.png")}
             alt="dashboard"
-            width={50}
-            height={50}
+            width={40}
+            height={40}
           />
           <NavLink
             className="navlink"
@@ -40,8 +40,8 @@ const Navbar = () => {
           <img
             src={require("../../images/inventory.png")}
             alt="inventory"
-            width={50}
-            height={50}
+            width={40}
+            height={40}
           />
           <NavLink className="navlink" to="/inventory">
             Inventory
@@ -51,8 +51,8 @@ const Navbar = () => {
           <img
             src={require("../../images/reports.png")}
             alt="reports"
-            width={50}
-            height={50}
+            width={40}
+            height={40}
           />
           <NavLink className="navlink" to="/reports">
             Reports
@@ -67,8 +67,8 @@ const Navbar = () => {
           <img
             src={require("../../images/power.png")}
             alt="power"
-            width={50}
-            height={50}
+            width={40}
+            height={40}
           />
           <NavLink className="navlink" to="/login">
             Sign In

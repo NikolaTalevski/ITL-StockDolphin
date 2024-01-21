@@ -34,3 +34,14 @@
     box-shadow: 1px 1px;
     color: rgb(148, 146, 146);
 }
+
+.recent-orders {
+    width: 550px;
+    margin-left: 300px;
+}
+
+.recent-orders-cards {
+    margin-left: 50px;
+    display: flex;
+    justify-content: space-between;
+}
