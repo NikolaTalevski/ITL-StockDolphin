@@ -89,6 +89,8 @@ app.use(function (err, req, res, next) {
   }
 });
 
+app.use("/", express.static(path.join(__dirname, "/../../../client/src")));
+
 app.listen(config.getSection("services").proxy.port, (err) => {
   if (err) return console.log(err);
   console.log(
