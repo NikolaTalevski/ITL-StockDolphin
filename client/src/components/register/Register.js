@@ -1,6 +1,7 @@
 import { useState } from "react";
 import React from "react";
 import "./Register.css";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -14,6 +15,23 @@ const Register = () => {
 
     console.log(username, email, password);
     setSuccess(true);
+
+    try {
+      let res = await fetch("/api/v1/auth/register", {
+        method: "POST",
+        body: JSON.stringify({ username, email, password }),
+        headers: {
+          "content-type": "application/json",
+        },
+      });
+      if (!res.ok) {
+        throw "Error registering";
+      }
+      let data = await res.json();
+      localStorage.setItem("jwt", data.token);
+    } catch (err) {
+      alert(err);
+    }
   };
 
   return (
@@ -22,7 +40,7 @@ const Register = () => {
         <section className="success">
           <h1>Success!</h1>
           <p>
-            <a href="#">Sign In</a>
+            <Link to="/login">Sign In</Link>
           </p>
         </section>
       ) : (
@@ -34,7 +52,7 @@ const Register = () => {
             <input
               className="input-field"
               type="text"
-              id="username"
+              name="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -43,8 +61,8 @@ const Register = () => {
             <label htmlFor="email">Email:</label> <br />
             <input
               className="input-field"
-              type="text"
-              id="email"
+              type="email"
+              name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -54,7 +72,7 @@ const Register = () => {
             <input
               className="input-field"
               type="password"
-              id="password"
+              name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -66,7 +84,7 @@ const Register = () => {
             Already registered? <br />
             <span className="btn-signin">
               {/* put router link here */}
-              <a href="#">Sign In</a>
+              <Link to="/login">Sign In</Link>
             </span>
           </p>
         </section>

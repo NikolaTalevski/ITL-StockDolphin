@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Login.css";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -13,6 +14,23 @@ const Login = () => {
 
     console.log(username, email, password);
     setSuccess(true);
+
+    try {
+      let res = await fetch("/api/v1/auth/login", {
+        method: "POST",
+        body: JSON.stringify({ username, email, password }),
+        headers: {
+          "content-type": "application/json",
+        },
+      });
+      if (!res.ok) {
+        throw "Error logging in";
+      }
+      let data = await res.json();
+      localStorage.setItem("jwt", data.token);
+    } catch (err) {
+      alert(err);
+    }
   };
 
   return (
@@ -21,7 +39,7 @@ const Login = () => {
         <section className="success">
           <h1>Success!</h1>
           <p>
-            <a href="#">Home</a>
+            <Link to="/dashboard">Home</Link>
           </p>
         </section>
       ) : (
@@ -32,6 +50,7 @@ const Login = () => {
               className="input-field"
               placeholder="Enter your username"
               type="text"
+              name="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -41,6 +60,7 @@ const Login = () => {
               className="input-field"
               placeholder="Enter your email"
               type="email"
+              name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -50,6 +70,7 @@ const Login = () => {
               className="input-field"
               placeholder="Enter your password"
               type="password"
+              name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -61,7 +82,7 @@ const Login = () => {
             Don't have an account? <br />
             <span className="btn-signup">
               {/* put router link here */}
-              <a href="#">Sign Up</a>
+              <Link to="/register">Sign Up</Link>
             </span>
           </p>
         </section>

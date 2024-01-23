@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CategoryCard from "../cards/SummaryCard/Category-Card";
 import TotalItemCard from "../cards/SummaryCard/Total-Item-Card";
 import OrderCard from "../cards/SummaryCard/Order-Card";
@@ -11,12 +11,14 @@ const Dashboard = () => {
   const a4paper = require("../../images/a4paper.png");
   const espresso = require("../../images/espresso.png");
   const pens = require("../../images/pens.png");
+  const username = useState("Nikola");
   return (
     <div>
       <header className="header">
         <h1>Dashboard </h1>
-        <hr></hr>
+        <h2>Welcome back {username}</h2>
       </header>
+      <hr></hr>
 
       <div className="inventory-summary">
         <h4>Inventory summary</h4>

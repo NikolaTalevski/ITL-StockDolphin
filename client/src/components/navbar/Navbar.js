@@ -8,6 +8,7 @@ import Suppliers from "../pages/Suppliers";
 import Login from "../login/Login";
 import Activityhistory from "../pages/Activityhistory";
 import Inventorysummary from "../pages/Inventorysummary";
+import Register from "../register/Register";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -71,7 +72,7 @@ const Navbar = () => {
             height={40}
           />
           <NavLink className="navlink" to="/login">
-            Sign In
+            Sign Out
           </NavLink>
         </div>
       </nav>
@@ -90,6 +91,7 @@ const Navbar = () => {
             element={<Inventorysummary />}
           />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </div>
     </section>
