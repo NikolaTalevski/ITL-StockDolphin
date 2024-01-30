@@ -9,6 +9,7 @@ import Login from "../login/Login";
 import Activityhistory from "../pages/Activityhistory";
 import Inventorysummary from "../pages/Inventorysummary";
 import Register from "../register/Register";
+import SuppliersModal from "../pages/SuppliersModal";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -72,7 +73,7 @@ const Navbar = () => {
             height={40}
           />
           <NavLink className="navlink" to="/login">
-            Sign Out
+            Sign In
           </NavLink>
         </div>
       </nav>
@@ -92,6 +93,7 @@ const Navbar = () => {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/suppliers/modal" element={<SuppliersModal />} />
         </Routes>
       </div>
     </section>

@@ -1,6 +1,7 @@
 import React from "react";
 import "./Suppliers.css";
 import AddButton from "../AddButton/AddButton";
+import { Link } from "react-router-dom";
 
 const Suppliers = () => {
   return (
@@ -19,7 +20,9 @@ const Suppliers = () => {
           />
         </div>
         <div>
-          <AddButton model={"SUPPLIER"} />
+          <Link to="/suppliers/modal">
+            <AddButton model={"SUPPLIER"} />
+          </Link>
         </div>
       </div>
     </div>

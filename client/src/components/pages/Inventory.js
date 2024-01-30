@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import AddButton from "../AddButton/AddButton";
+import ModalAddCategory from "../Modals/ModalAddCategory";
 
 const Inventory = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const someAction = () => {
+    console.log("Modal action");
+  };
+
   return (
     <div>
       <header className="header">
@@ -18,9 +33,14 @@ const Inventory = () => {
           />
         </div>
         <div>
-          <AddButton model={"CATEGORY"} />
+          <AddButton model={"CATEGORY"} onClick={openModal} />
         </div>
       </div>
+      <ModalAddCategory
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onAction={someAction}
+      />
     </div>
   );
 };

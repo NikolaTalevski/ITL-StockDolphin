@@ -12,9 +12,6 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(username, email, password);
-    setSuccess(true);
-
     try {
       let res = await fetch("/api/v1/auth/login", {
         method: "POST",
@@ -28,6 +25,7 @@ const Login = () => {
       }
       let data = await res.json();
       localStorage.setItem("jwt", data.token);
+      setSuccess(true);
     } catch (err) {
       alert(err);
     }

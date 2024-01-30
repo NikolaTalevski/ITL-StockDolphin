@@ -11,7 +11,7 @@ const Dashboard = () => {
   const a4paper = require("../../images/a4paper.png");
   const espresso = require("../../images/espresso.png");
   const pens = require("../../images/pens.png");
-  const username = useState("Nikola");
+  const [username, setUsername] = useState("");
   return (
     <div>
       <header className="header">

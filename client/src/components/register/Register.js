@@ -13,9 +13,6 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(username, email, password);
-    setSuccess(true);
-
     try {
       let res = await fetch("/api/v1/auth/register", {
         method: "POST",
@@ -29,6 +26,7 @@ const Register = () => {
       }
       let data = await res.json();
       localStorage.setItem("jwt", data.token);
+      setSuccess(true);
     } catch (err) {
       alert(err);
     }
