@@ -1,22 +1,10 @@
 import React, { useState } from "react";
-import AddButton from "../AddButton/AddButton";
+import "./Inventorysummary.css";
+import "../AddButton/AddButton.css";
 import ModalAddCategory from "../Modals/ModalAddCategory";
 
 const Inventory = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const someAction = () => {
-    console.log("Modal action");
-  };
-
+  const [openModal, setOpenModal] = useState(false);
   return (
     <div>
       <header className="header">
@@ -28,19 +16,20 @@ const Inventory = () => {
           <img src={require("../../images/search.png")} alt="search" />
           <input
             type="text"
+            name="categories"
             placeholder="Search Categories"
             className="search-input"
           />
         </div>
-        <div>
-          <AddButton model={"CATEGORY"} onClick={openModal} />
+
+        <div className="add">
+          <button className="add-btn" onClick={() => setOpenModal(true)}>
+            <img src={require("../../images/addnew.png")} alt="addnew" />
+            <span>ADD CATEGORY</span>
+          </button>
         </div>
       </div>
-      <ModalAddCategory
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        onAction={someAction}
-      />
+      <ModalAddCategory open={openModal} onClose={() => setOpenModal(false)} />
     </div>
   );
 };

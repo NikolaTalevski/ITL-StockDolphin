@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Suppliers.css";
-import AddButton from "../AddButton/AddButton";
-import { Link } from "react-router-dom";
+import ModalAddSupplier from "../Modals/ModalAddSupplier";
 
 const Suppliers = () => {
+  const [openModal, setOpenModal] = useState(false);
   return (
     <div>
       <header className="header">
@@ -19,12 +19,14 @@ const Suppliers = () => {
             className="search-input"
           />
         </div>
-        <div>
-          <Link to="/suppliers/modal">
-            <AddButton model={"SUPPLIER"} />
-          </Link>
+        <div className="add">
+          <button className="add-btn" onClick={() => setOpenModal(true)}>
+            <img src={require("../../images/addnew.png")} alt="addnew" />
+            <span>ADD SUPPLIER</span>
+          </button>
         </div>
       </div>
+      <ModalAddSupplier open={openModal} onClose={() => setOpenModal(false)} />
     </div>
   );
 };

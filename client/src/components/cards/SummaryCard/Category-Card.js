@@ -9,7 +9,7 @@ const CategoryCard = () => {
     try {
       let res = await fetch("/api/v1/category", {
         method: "GET",
-        body: JSON.stringify({ number }),
+
         headers: {
           "content-type": "application/json",
           authorization: `bearer ${localStorage.getItem("jwt")}`,
@@ -17,7 +17,7 @@ const CategoryCard = () => {
       });
 
       let data = await res.json();
-      setNumber(data);
+      setNumber(data.length);
     } catch (err) {
       alert(err);
     }
