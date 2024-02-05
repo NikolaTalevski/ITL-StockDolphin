@@ -20,9 +20,11 @@ const Login = () => {
           "content-type": "application/json",
         },
       });
+      localStorage.setItem("username", username);
       if (!res.ok) {
         throw "Error logging in";
       }
+
       let data = await res.json();
       localStorage.setItem("jwt", data.token);
       setSuccess(true);

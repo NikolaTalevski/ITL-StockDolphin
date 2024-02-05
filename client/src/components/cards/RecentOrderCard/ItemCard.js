@@ -3,12 +3,12 @@ import "./ItemCard.css";
 
 const ItemCard = ({ img, title, items, price }) => {
   return (
-    <div class="item-card">
+    <div className="item-card">
       <img src={img} alt="Order-Img" />
 
-      <div class="item-card-bottom">
-        <p class="item-card-bottom-title">{title}</p>
-        <p class="item-card-bottom-description">
+      <div className="item-card-bottom">
+        <p className="item-card-bottom-title">{title}</p>
+        <p className="item-card-bottom-description">
           <b>{items} | </b>
           {price}
         </p>

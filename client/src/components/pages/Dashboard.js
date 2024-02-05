@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CategoryCard from "../cards/SummaryCard/Category-Card";
 import TotalItemCard from "../cards/SummaryCard/Total-Item-Card";
 import OrderCard from "../cards/SummaryCard/Order-Card";
@@ -12,6 +12,14 @@ const Dashboard = () => {
   const espresso = require("../../images/espresso.png");
   const pens = require("../../images/pens.png");
   const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("username");
+    if (storedUsername) {
+      setUsername(storedUsername);
+    }
+  }, []);
+
   return (
     <div>
       <header className="header">
