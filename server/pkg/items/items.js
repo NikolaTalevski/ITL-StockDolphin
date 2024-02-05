@@ -1,34 +1,32 @@
 const mongoose = require("mongoose");
 
-const {
-    Item
-} = require("./model");
+const { Item } = require("./model");
 
-const getAllItems = async() => {
-    return await Item.find({});
+const getAllItems = async (user_id) => {
+  return await Item.find({ user_id });
 };
 
-const getOneItem = async( id) => {
-    return await Item.findOne({ _id: id});
+const getOneItem = async (user_id, id) => {
+  return await Item.findOne({ user_id: user_id, _id: id });
 };
 
-const createItem = async(i) => {
-    const item = new Item(i);
-    return await item.save();
+const createItem = async (i) => {
+  const item = new Item(i);
+  return await item.save();
 };
 
-const updateItem = async(id, newData) => {
-    return await Item.updateOne({_id: id}, newData);
+const updateItem = async (id, newData) => {
+  return await Item.updateOne({ _id: id }, newData);
 };
 
-const removeItem = async(id) => {
-    return await Item.deleteOne({_id: id});
+const removeItem = async (id) => {
+  return await Item.deleteOne({ _id: id });
 };
 
 module.exports = {
-    getAllItems,
-    getOneItem,
-    createItem,
-    updateItem,
-    removeItem
-}
+  getAllItems,
+  getOneItem,
+  createItem,
+  updateItem,
+  removeItem,
+};

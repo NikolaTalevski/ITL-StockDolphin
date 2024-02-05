@@ -1,13 +1,16 @@
 const mongoose = require("mongoose");
 
 const itemSchema = new mongoose.Schema({
-    category_id: String,
-    name: String,
-    image: Buffer,
+  name: String,
+  image: Buffer,
+  user_id: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: "users",
+  },
 });
 
 const Item = mongoose.model("items", itemSchema, "items");
 
 module.exports = {
-    Item
-}
+  Item,
+};

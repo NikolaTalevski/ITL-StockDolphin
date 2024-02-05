@@ -17,6 +17,7 @@ api.use(
 
 api.get("/api/v1/order", order.getAllOrdersHandler);
 api.get("/api/v1/order/:id", order.getOneOrderHandler);
+api.get("/api/v1/orderprice", order.getPriceHandler);
 api.post("/api/v1/order", order.createOrderHandler);
 api.put("/api/v1/order/:id", order.updateOrderHandler);
 api.delete("/api/v1/order/:id", order.removeOrderHandler);

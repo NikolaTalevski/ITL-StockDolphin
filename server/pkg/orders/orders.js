@@ -1,34 +1,37 @@
 const mongoose = require("mongoose");
 
-const {
-    Order
-} = require("./model");
+const { Order } = require("./model");
 
-const getAllOrders = async() => {
-    return await Order.find({});
+const getAllOrders = async (user_id) => {
+  return await Order.find({ user_id });
 };
 
-const getOneOrder = async(id) => {
-    return await Order.findOne({_id: id});
+const getOneOrder = async (user_id, id) => {
+  return await Order.findOne({ user_id: user_id, _id: id });
 };
 
-const createOrder = async(o) => {
-    const order = new Order(o);
-    return await order.save();
+const getPrice = async (user_id, price) => {
+  return await Order.find({ user_id: user_id, price: price });
 };
 
-const updateOrder = async(id, newData) => {
-    return await Order.updateOne({_id: id}, newData);
+const createOrder = async (o) => {
+  const order = new Order(o);
+  return await order.save();
 };
 
-const removeOrder = async(id) => {
-    return await Order.deleteOne({_id: id});
+const updateOrder = async (id, newData) => {
+  return await Order.updateOne({ _id: id }, newData);
+};
+
+const removeOrder = async (id) => {
+  return await Order.deleteOne({ _id: id });
 };
 
 module.exports = {
-    getAllOrders,
-    getOneOrder,
-    createOrder,
-    updateOrder,
-    removeOrder
-}
+  getAllOrders,
+  getOneOrder,
+  getPrice,
+  createOrder,
+  updateOrder,
+  removeOrder,
+};

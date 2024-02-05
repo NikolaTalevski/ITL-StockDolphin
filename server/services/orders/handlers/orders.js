@@ -29,6 +29,22 @@ const getOneOrderHandler = async (req, res) => {
   }
 };
 
+const getPriceHandler = async (req, res) => {
+  try {
+    const price = await orders.getPrice(req.params.id);
+    if (!price) {
+      throw {
+        code: 404,
+        error: "Price not found",
+      };
+    }
+    return res.status(200).send(price);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send("Interval server error");
+  }
+};
+
 const createOrderHandler = async (req, res) => {
   try {
     await validate(req.body, orderPOST);
@@ -78,6 +94,7 @@ const removeOrderHandler = async (req, res) => {
 module.exports = {
   getAllOrdersHandler,
   getOneOrderHandler,
+  getPriceHandler,
   createOrderHandler,
   updateOrderHandler,
   removeOrderHandler,
