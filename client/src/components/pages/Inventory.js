@@ -1,10 +1,66 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Inventorysummary.css";
 import "../AddButton/AddButton.css";
+import "./Inventory.css";
 import ModalAddCategory from "../Modals/ModalAddCategory";
 
 const Inventory = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [numberCat, setNumberCat] = useState([0]);
+  const [numberItems, setNumberItems] = useState([0]);
+  const [numberOrders, setNumberOrders] = useState([0]);
+
+  useEffect(() => {
+    fetch("/api/v1/category", {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("jwt")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((allCategories) => {
+        setNumberCat(allCategories.length);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/v1/item", {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("jwt")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((allItems) => {
+        setNumberItems(allItems.length);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/v1/order", {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("jwt")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((allOrders) => {
+        setNumberOrders(allOrders.length);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
+
   return (
     <div>
       <header className="header">
@@ -28,6 +84,18 @@ const Inventory = () => {
             <span>ADD CATEGORY</span>
           </button>
         </div>
+      </div>
+      <div className="inventory-info">
+        <p>
+          Categories: <b>{numberCat}</b>
+        </p>
+        <p>
+          Items: <b>{numberItems}</b>{" "}
+        </p>
+        <p>
+          Total Orders: <b>{numberOrders}</b>{" "}
+        </p>
+        <p>Total Cost: </p>
       </div>
       <ModalAddCategory open={openModal} onClose={() => setOpenModal(false)} />
     </div>

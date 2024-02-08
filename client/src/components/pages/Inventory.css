@@ -1,0 +1,8 @@
+.inventory-info {
+    margin-left: 150px;
+    display: flex;
+}
+
+.inventory-info p {
+    margin-right: 50px;
+}

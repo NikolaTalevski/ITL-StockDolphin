@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Suppliers.css";
 import ModalAddSupplier from "../Modals/ModalAddSupplier";
+import SupplierList from "../cards/SupplierCard/SupplierCard";
 
 const Suppliers = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -25,6 +26,11 @@ const Suppliers = () => {
             <span>ADD SUPPLIER</span>
           </button>
         </div>
+      </div>
+
+      <h1>Suppliers</h1>
+      <div className="supplier-cards">
+        <SupplierList />
       </div>
       <ModalAddSupplier open={openModal} onClose={() => setOpenModal(false)} />
     </div>

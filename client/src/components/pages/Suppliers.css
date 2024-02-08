@@ -24,6 +24,10 @@
     justify-content: space-between;
 }
 
+.supplier-cards {
+    margin-left: 150px;
+}
+
 /* .add-btn {
     background-color: rgb(21, 157, 21);
     color: white;
