@@ -76,6 +76,19 @@ app.use(
 );
 
 app.use(
+  "/api/v1/recent-activity",
+  proxy(
+    `http://127.0.0.1:${config.getSection("services").recentactivity.port}`,
+    {
+      proxyReqPathResolver: (req) =>
+        `http://127.0.0.1:${
+          config.getSection("services").recentactivity.port
+        }/api/v1/recent-activity${req.url}`,
+    }
+  )
+);
+
+app.use(
   "/",
   proxy(`http://127.0.0.1:${config.getSection("services").proxy.port}`, {
     proxyReqPathResolver: (req) =>
