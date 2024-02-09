@@ -1,0 +1,51 @@
+.suppliercard-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
+.suppliercard {
+    border: 1px solid black;
+    border-radius: 5px;
+    /* padding: 5px; */
+    margin-right: 100px;
+    width: 150px;
+    
+}
+
+.suppliername {
+   font-size: large;
+    text-align: center;
+    background-color: rgb(54, 171, 54);
+    color: white;
+    padding: 5px;
+}
+
+.supplieraddress {
+    font-size: 12px;
+}
+
+.supplierphonenumber {
+    font-size: 12px;
+}
+
+.supplieremail {
+    font-size: 12px;
+}
+
+.supplierbtn {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.editbtn {
+    width: 10px;
+    background-color: rgb(51, 135, 51);
+    cursor: pointer;
+}
+
+.deletebtn {
+    width: 10px;
+    cursor: pointer;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Suppliers.css";
 import ModalAddSupplier from "../Modals/ModalAddSupplier";
-import SupplierList from "../cards/SupplierCard/SupplierCard";
+import SupplierList from "../cards/SupplierCard/SupplierList";
 
 const Suppliers = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -28,7 +28,6 @@ const Suppliers = () => {
         </div>
       </div>
 
-      <h1>Suppliers</h1>
       <div className="supplier-cards">
         <SupplierList />
       </div>
