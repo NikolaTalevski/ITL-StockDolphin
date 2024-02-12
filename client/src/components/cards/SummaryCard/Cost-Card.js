@@ -3,11 +3,11 @@ import SummaryCard from "./SummaryCard";
 
 const CostCard = () => {
   const imgCost = require("../../../images/cost-icon.png");
-  const [order, setOrder] = useState("");
+  const [totalCost, setTotalCost] = useState([0]);
 
   useEffect(() => {
-    const fetchOrder = () => {
-      fetch("/api/v1/order", {
+    const fetchOrderTotalPrice = () => {
+      fetch("/api/v1/order/total-price", {
         method: "GET",
         headers: {
           "content-type": "application/json",
@@ -15,23 +15,19 @@ const CostCard = () => {
         },
       })
         .then((res) => res.json())
-        .then((orderData) => {
-          setOrder(orderData);
+        .then((data) => {
+          setTotalCost(data.totalPrice);
         })
 
         .catch((err) => {
           console.log(err);
         });
     };
-    fetchOrder();
+    fetchOrderTotalPrice();
   }, []);
 
   return (
-    <SummaryCard
-      img={imgCost}
-      description={"Total Cost"}
-      number={order.price}
-    />
+    <SummaryCard img={imgCost} description={"Total Cost"} number={totalCost} />
   );
 };
 

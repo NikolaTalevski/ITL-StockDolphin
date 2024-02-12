@@ -1,24 +1,21 @@
 import React from "react";
 import "./ModalDelete.css";
 
-const ModalDelete = ({
-  isOpen,
-  text,
-  closeBtnTxt,
-  onClose,
-  actionBtnTxt,
-  onAction,
-}) => {
+const ModalDelete = ({ open, onClose }) => {
+  if (!open) return null;
   return (
-    <div className={`modal-container ${isOpen ? "open" : ""}`}>
-      <div className="modal-content">
-        <p className="modal-description">{text}</p>
+    <div onClick={onClose} className="overlay">
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+        className="modal-container"
+      >
+        <p className="modal-container-header">Delete modal</p>
         <button className="modal-close-btn" onClick={onClose}>
-          {closeBtnTxt}
+          close
         </button>
-        <button className="modal-action-btn" onClick={onAction}>
-          {actionBtnTxt}
-        </button>
+        <button className="modal-add-btn">Delete</button>
       </div>
     </div>
   );

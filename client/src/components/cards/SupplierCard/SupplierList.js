@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./SupplierList.css";
+import ModalDelete from "../../Modals/ModalDelete";
+import ModalEditSupplier from "../../Modals/ModalEditSupplier";
 
-const SupplierList = () => {
+const SupplierList = ({ id }) => {
   const [suppliers, setSuppliers] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     fetch("/api/v1/supplier", {
@@ -40,21 +43,28 @@ const SupplierList = () => {
           </p>
           <hr></hr>
           <div className="supplierbtn">
-            <button>
+            <button onClick={() => setOpenModal(true)}>
               <img
+                className="editbtn"
                 src={require("../../../images/editbtn.png")}
                 alt="editbtn"
-                className="editbtn"
               />
             </button>
-            <button>
+            <button onClick={() => setOpenModal(true)}>
               <img
+                className="deletebtn"
                 src={require("../../../images/deletebtn.png")}
                 alt="deletebtn"
-                className="deletebtn"
+                width={20}
+                height={20}
               />
             </button>
           </div>
+          <ModalDelete open={openModal} onClose={() => setOpenModal(false)} />
+          <ModalEditSupplier
+            open={openModal}
+            onClose={() => setOpenModal(false)}
+          />
         </div>
       ))}
     </div>
