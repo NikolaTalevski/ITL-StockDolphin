@@ -10,8 +10,18 @@ const getOneOrder = async (user_id, id) => {
   return await Order.findOne({ user_id: user_id, _id: id });
 };
 
-const getPrice = async (user_id, price) => {
-  return await Order.find({ user_id: user_id, price: price });
+const getTotalOrderPrice = async (user_id) => {
+  try {
+    const orders = await Order.find({ user_id: user_id });
+    const totalPrice = orders.reduce(
+      (total, order) => total + parseFloat(order.price),
+      0
+    );
+    return totalPrice;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
 };
 
 const createOrder = async (o) => {
@@ -30,7 +40,7 @@ const removeOrder = async (id) => {
 module.exports = {
   getAllOrders,
   getOneOrder,
-  getPrice,
+  getTotalOrderPrice,
   createOrder,
   updateOrder,
   removeOrder,

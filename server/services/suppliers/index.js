@@ -16,10 +16,10 @@ api.use(
 );
 
 api.get("/api/v1/supplier", supplier.getAllSuppliersHandler);
-api.get("/api/v1/supplier", supplier.getOneSupplierHandler);
+api.get("/api/v1/supplier/:id", supplier.getOneSupplierHandler);
 api.post("/api/v1/supplier", supplier.createSupplierHandler);
-api.put("/api/v1/supplier", supplier.updateSupplierHandler);
-api.delete("/api/v1/supplier", supplier.removeSupplierHandler);
+api.put("/api/v1/supplier/:id", supplier.updateSupplierHandler);
+api.delete("/api/v1/supplier/:id", supplier.removeSupplierHandler);
 
 api.use(function (err, req, res, next) {
   if (err.name === "UnauthorizedError") {

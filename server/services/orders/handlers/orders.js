@@ -29,15 +29,9 @@ const getOneOrderHandler = async (req, res) => {
   }
 };
 
-const getPriceHandler = async (req, res) => {
+const getTotalOrderPriceHandler = async (req, res) => {
   try {
-    const price = await orders.getPrice(req.params.id);
-    if (!price) {
-      throw {
-        code: 404,
-        error: "Price not found",
-      };
-    }
+    const price = (await orders.getTotalOrderPrice(req.params.id)) || 0;
     return res.status(200).send(price);
   } catch (err) {
     console.log(err);
@@ -94,7 +88,7 @@ const removeOrderHandler = async (req, res) => {
 module.exports = {
   getAllOrdersHandler,
   getOneOrderHandler,
-  getPriceHandler,
+  getTotalOrderPriceHandler,
   createOrderHandler,
   updateOrderHandler,
   removeOrderHandler,
