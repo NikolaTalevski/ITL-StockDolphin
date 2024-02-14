@@ -5,6 +5,7 @@ import OrderCard from "../cards/SummaryCard/Order-Card";
 import CostCard from "../cards/SummaryCard/Cost-Card";
 import "./Dashboard.css";
 import ItemCard from "../cards/RecentOrderCard/ItemCard";
+import RecentActivity from "../RecentActivity/RecentActivity";
 
 const Dashboard = () => {
   const mouse = require("../../images/mouse.png");
@@ -22,7 +23,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <header className="header">
+      <header className="dashboardheader">
         <h1>Dashboard </h1>
         <h2>Welcome back {username}</h2>
       </header>
@@ -38,7 +39,8 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="recent-activity">
-        <h4>Recent activity</h4>
+        <RecentActivity />
+        {/* <h4>Recent activity</h4>
         <div className="activites">
           <p className="paragraph">
             Admin has created item <b>Office Pens </b>in
@@ -56,7 +58,7 @@ const Dashboard = () => {
             Admin has moved item <b>Mouse </b>in
             <b> Office Supply (Office Category)</b>
           </p>
-        </div>
+        </div> */}
       </div>
       <div className="recent-orders">
         <h4>Recent orders</h4>

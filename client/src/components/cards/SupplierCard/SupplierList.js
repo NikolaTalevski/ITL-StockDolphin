@@ -3,9 +3,12 @@ import "./SupplierList.css";
 import ModalDelete from "../../Modals/ModalDelete";
 import ModalEditSupplier from "../../Modals/ModalEditSupplier";
 
-const SupplierList = ({ id }) => {
+const SupplierList = () => {
   const [suppliers, setSuppliers] = useState([]);
-  const [openModal, setOpenModal] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [selectedSupplierId, setSelectedSupplierId] = useState(null);
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [selectedSupplier, setSelectedSupplier] = useState(null);
 
   useEffect(() => {
     fetch("/api/v1/supplier", {
@@ -19,6 +22,67 @@ const SupplierList = ({ id }) => {
       .then((data) => setSuppliers(data))
       .catch((err) => console.err);
   }, []);
+
+  const handleDeleteClick = (supplierId) => {
+    setSelectedSupplierId(supplierId);
+    setOpenDeleteModal(true);
+  };
+
+  const handleEditClick = (supplier) => {
+    setSelectedSupplier(supplier);
+    setOpenEditModal(true);
+  };
+
+  const handleDeleteSupplier = async () => {
+    try {
+      const res = await fetch(`/api/v1/supplier/${selectedSupplierId}`, {
+        method: "DELETE",
+        headers: {
+          "content-type": "application/json",
+          authorization: `bearer ${localStorage.getItem("jwt")}`,
+        },
+      });
+      if (!res.ok) {
+        throw "Failed to delete supplier";
+      }
+      setSuppliers(
+        suppliers.filter((supplier) => supplier._id !== selectedSupplierId)
+      );
+      setOpenDeleteModal(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleEditSupplier = async (name, address, phonenumber, email) => {
+    try {
+      const res = await fetch(`/api/v1/supplier/${selectedSupplier._id}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+          authorization: `bearer ${localStorage.getItem("jwt")}`,
+        },
+        body: JSON.stringify({ name, address, phonenumber, email }),
+      });
+      if (!res.ok) {
+        throw "Failed to edit supplier";
+      }
+      const editedSupplier = {
+        ...selectedSupplier,
+        name,
+        address,
+        phonenumber,
+        email,
+      };
+      setSuppliers(
+        suppliers.map((s) =>
+          s._id === selectedSupplier._id ? editedSupplier : s
+        )
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="suppliercard-container">
@@ -43,14 +107,14 @@ const SupplierList = ({ id }) => {
           </p>
           <hr></hr>
           <div className="supplierbtn">
-            <button onClick={() => setOpenModal(true)}>
+            <button onClick={() => handleEditClick(supplier)}>
               <img
                 className="editbtn"
                 src={require("../../../images/editbtn.png")}
                 alt="editbtn"
               />
             </button>
-            <button onClick={() => setOpenModal(true)}>
+            <button onClick={() => handleDeleteClick(supplier._id)}>
               <img
                 className="deletebtn"
                 src={require("../../../images/deletebtn.png")}
@@ -60,10 +124,16 @@ const SupplierList = ({ id }) => {
               />
             </button>
           </div>
-          <ModalDelete open={openModal} onClose={() => setOpenModal(false)} />
+          <ModalDelete
+            open={openDeleteModal}
+            onClose={() => setOpenDeleteModal(false)}
+            onDelete={handleDeleteSupplier}
+          />
           <ModalEditSupplier
-            open={openModal}
-            onClose={() => setOpenModal(false)}
+            open={openEditModal}
+            onClose={() => setOpenEditModal(false)}
+            onUpdate={handleEditSupplier}
+            supplier={selectedSupplier}
           />
         </div>
       ))}

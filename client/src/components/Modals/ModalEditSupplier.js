@@ -1,44 +1,66 @@
 import React, { useEffect, useState } from "react";
 
-const ModalEditSupplier = ({ open, onClose, supplier, onUpdate }) => {
-  const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
-  const [phonenumber, setPhonenumber] = useState("");
-  const [email, setEmail] = useState("");
-  //   console.log(supplier);
+const ModalEditSupplier = ({ open, onClose, onUpdate, supplier }) => {
+  const [editedName, setEditedName] = useState("");
+  const [editedAddress, setEditedAddress] = useState("");
+  const [editedPhonenumber, setEditedPhonenumber] = useState("");
+  const [editedEmail, setEditedEmail] = useState("");
 
   useEffect(() => {
-    if (supplier && supplier._id) {
-      setName(supplier.name || "");
-      setAddress(supplier.address || "");
-      setPhonenumber(supplier.phonenumber || "");
-      setEmail(supplier.email || "");
+    if (supplier) {
+      setEditedName(supplier.name);
+      setEditedAddress(supplier.address);
+      setEditedPhonenumber(supplier.phonenumber);
+      setEditedEmail(supplier.email);
     }
+    // const fetchSupplier = async () => {
+    //   try {
+    //     const res = await fetch(`/api/v1/supplier/${id}`, {
+    //       method: "GET",
+    //       headers: {
+    //         "content-type": "application/json",
+    //         authorization: `bearer ${localStorage.getItem("jwt")}`,
+    //       },
+    //     });
+    //     if (!res.ok) {
+    //       throw new Error("Failed to fetch supplier");
+    //     }
+    //     const data = await res.json();
+    //     setSupplier(data);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // };
+    // fetchSupplier();
   }, [supplier]);
 
   if (!open) return null;
 
-  const EditSupplier = async (e) => {
-    e.preventDefault();
-
-    try {
-      const res = await fetch(`/api/v1/supplier/${supplier._id}`, {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-          authorization: `bearer ${localStorage.getItem("jwt")}`,
-        },
-        body: JSON.stringify({ name, address, phonenumber, email }),
-      });
-      if (!res.ok) {
-        throw "Failed";
-      }
-      const updatedSupplier = await res.json();
-      onUpdate(updatedSupplier);
-    } catch (err) {
-      console.log(err);
-    }
+  const handleUpdate = () => {
+    onUpdate(editedName, editedAddress, editedPhonenumber, editedEmail);
+    onClose();
   };
+
+  // const EditSupplier = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const res = await fetch(`/api/v1/supplier/${id}`, {
+  //       method: "PUT",
+  //       headers: {
+  //         "content-type": "application/json",
+  //         authorization: `bearer ${localStorage.getItem("jwt")}`,
+  //       },
+  //       body: JSON.stringify(supplier),
+  //     });
+  //     if (!res.ok) {
+  //       throw new Error(`Failed to update supplier: ${res.statusText} `);
+  //     }
+  //     onClose();
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   return (
     <div className="overlay">
@@ -55,36 +77,40 @@ const ModalEditSupplier = ({ open, onClose, supplier, onUpdate }) => {
         <input
           className="modal-container-input"
           placeholder="Name"
+          name="name"
           type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={editedName}
+          onChange={(e) => setEditedName(e.target.value)}
         />
         <input
           className="modal-container-input"
           placeholder="Address"
+          name="address"
           type="text"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
+          value={editedAddress}
+          onChange={(e) => setEditedAddress(e.target.value)}
         />
         <input
           className="modal-container-input"
           placeholder="Phonenumber"
+          name="phonenumber"
           type="number"
-          value={phonenumber}
-          onChange={(e) => setPhonenumber(e.target.value)}
+          value={editedPhonenumber}
+          onChange={(e) => setEditedPhonenumber(e.target.value)}
         />
         <input
           className="modal-container-input"
           placeholder="Email"
+          name="email"
           type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={editedEmail}
+          onChange={(e) => setEditedEmail(e.target.value)}
         />
         <div className="modal-bottom">
           <button className="modal-close-btn" onClick={onClose}>
             CANCEL
           </button>
-          <button className="modal-add-btn" onClick={EditSupplier}>
+          <button className="modal-add-btn" onClick={handleUpdate}>
             EDIT SUPPLIER
           </button>
         </div>
