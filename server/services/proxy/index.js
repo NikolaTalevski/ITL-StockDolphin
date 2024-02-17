@@ -3,9 +3,9 @@ const proxy = require("express-http-proxy");
 const express = require("express");
 const config = require("../../pkg/config");
 
-const app = express();
+const api = express();
 
-app.use(
+api.use(
   "/api/v1/auth",
   proxy(`http://127.0.0.1:${config.getSection("services").auth.port}`, {
     proxyReqPathResolver: (req) =>
@@ -15,7 +15,7 @@ app.use(
   })
 );
 
-app.use(
+api.use(
   "/api/v1/category",
   proxy(`http://127.0.0.1:${config.getSection("services").categories.port}`, {
     proxyReqPathResolver: (req) =>
@@ -25,7 +25,7 @@ app.use(
   })
 );
 
-app.use(
+api.use(
   "/api/v1/item",
   proxy(`http://127.0.0.1:${config.getSection("services").items.port}`, {
     proxyReqPathResolver: (req) =>
@@ -35,7 +35,7 @@ app.use(
   })
 );
 
-app.use(
+api.use(
   "/api/v1/order",
   proxy(`http://127.0.0.1:${config.getSection("services").orders.port}`, {
     proxyReqPathResolver: (req) =>
@@ -45,7 +45,7 @@ app.use(
   })
 );
 
-app.use(
+api.use(
   "/api/v1/storage",
   proxy(`http://127.0.0.1:${config.getSection("services").storage.port}`, {
     proxyReqPathResolver: (req) =>
@@ -55,7 +55,7 @@ app.use(
   })
 );
 
-app.use(
+api.use(
   "/api/v1/invoice",
   proxy(`http://127.0.0.1:${config.getSection("services").invoices.port}`, {
     proxyReqPathResolver: (req) =>
@@ -65,7 +65,7 @@ app.use(
   })
 );
 
-app.use(
+api.use(
   "/api/v1/supplier",
   proxy(`http://127.0.0.1:${config.getSection("services").suppliers.port}`, {
     proxyReqPathResolver: (req) =>
@@ -75,7 +75,7 @@ app.use(
   })
 );
 
-app.use(
+api.use(
   "/api/v1/recent-activity",
   proxy(
     `http://127.0.0.1:${config.getSection("services").recentactivity.port}`,
@@ -88,7 +88,7 @@ app.use(
   )
 );
 
-app.use(
+api.use(
   "/",
   proxy(`http://127.0.0.1:${config.getSection("services").proxy.port}`, {
     proxyReqPathResolver: (req) =>
@@ -96,15 +96,15 @@ app.use(
   })
 );
 
-app.use(function (err, req, res, next) {
+api.use(function (err, req, res, next) {
   if (err.name === "UnauthorizedError") {
     res.status(401).send("Invalid token");
   }
 });
 
-app.use("/", express.static(path.join(__dirname, "/../../../client/src")));
+api.use("/", express.static(path.join(__dirname, "/../../../client/src")));
 
-app.listen(config.getSection("services").proxy.port, (err) => {
+api.listen(config.getSection("services").proxy.port, (err) => {
   if (err) return console.log(err);
   console.log(
     `Server started on port ${config.getSection("services").proxy.port}`

@@ -32,7 +32,7 @@ const getOneOrderHandler = async (req, res) => {
 const getTotalOrderPriceHandler = async (req, res) => {
   try {
     const price = (await orders.getTotalOrderPrice(req.params.id)) || 0;
-    return res.status(200).send(price);
+    return res.status(200).send({ totalPrice: price });
   } catch (err) {
     console.log(err);
     return res.status(500).send("Interval server error");
