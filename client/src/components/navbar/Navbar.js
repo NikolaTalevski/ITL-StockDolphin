@@ -1,18 +1,18 @@
 import React from "react";
 import "./Navbar.css";
-import { Route, Routes, NavLink, useNavigate } from "react-router-dom";
-import Dashboard from "../pages/Dashboard";
-import Inventory from "../pages/Inventory";
-import Reports from "../pages/Reports";
-import Suppliers from "../pages/Suppliers";
-import Login from "../login/Login";
-import Activityhistory from "../pages/Activityhistory";
-import Inventorysummary from "../pages/Inventorysummary";
-import Register from "../register/Register";
-import SuppliersModal from "../pages/SuppliersModal";
+import { NavLink } from "react-router-dom";
+// import { Route, Routes, NavLink, useNavigate } from "react-router-dom";
+// import Dashboard from "../pages/Dashboard";
+// import Inventory from "../pages/Inventory";
+// import Reports from "../pages/Reports";
+// import Suppliers from "../pages/Suppliers";
+// import Login from "../login/Login";
+// import Activityhistory from "../pages/Activityhistory";
+// import Inventorysummary from "../pages/Inventorysummary";
+// import Register from "../register/Register";
+// import SuppliersModal from "../pages/SuppliersModal";
 
 const Navbar = () => {
-  const navigate = useNavigate();
   return (
     <section className="grid-container">
       <nav className="sidebar">
@@ -77,7 +77,7 @@ const Navbar = () => {
           </NavLink>
         </div>
       </nav>
-      <div className="content">
+      {/* <div className="content">
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/inventory" element={<Inventory />} />
@@ -95,7 +95,7 @@ const Navbar = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/suppliers/modal" element={<SuppliersModal />} />
         </Routes>
-      </div>
+      </div> */}
     </section>
   );
 };

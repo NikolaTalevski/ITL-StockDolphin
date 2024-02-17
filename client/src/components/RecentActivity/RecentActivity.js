@@ -14,20 +14,23 @@ const RecentActivity = () => {
         console.log(err);
       }
     };
-    const interval = setInterval(fetchActivity, 3000);
+
+    fetchActivity();
+    const intervalId = setInterval(fetchActivity, 5000);
 
     return () => {
-      clearInterval(interval);
+      clearInterval(intervalId);
     };
   }, []);
 
   return (
     <div>
       <h4>RecentActivity</h4>
-      {activities &&
-        activities.map((activity, index) => {
-          <p key={index}>{activity.message}</p>;
+      <ul>
+        {activities.map((activity, index) => {
+          <li key={index}>{activity}</li>;
         })}
+      </ul>
     </div>
   );
 };

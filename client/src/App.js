@@ -1,7 +1,7 @@
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Login from "./components/login/Login";
-import Navbar from "./components/navbar/Navbar";
+// import Navbar from "./components/navbar/Navbar";
 import Register from "./components/register/Register";
 import CustomSharedLayout from "./components/pages/CustomSharedLayout";
 import Dashboard from "./components/pages/Dashboard";
@@ -12,10 +12,20 @@ import Suppliers from "./components/pages/Suppliers";
 function App() {
   return (
     <BrowserRouter>
-      <CustomSharedLayout />
-      {/* <div> */}
+      <Routes>
+        <Route path="/*" element={<CustomSharedLayout />}>
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="inventory" element={<Inventory />} />
+          <Route path="reports" element={<Reports />} />
+          <Route path="suppliers" element={<Suppliers />} />
+        </Route>
+      </Routes>
+      {/* <CustomSharedLayout />
+      <div>
       <Routes></Routes>
-      {/* </div> */}
+      </div> */}
     </BrowserRouter>
   );
 }
