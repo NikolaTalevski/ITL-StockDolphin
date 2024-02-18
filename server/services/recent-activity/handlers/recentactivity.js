@@ -5,7 +5,7 @@ const getRecentActivity = async (req, res) => {
     const recentActivity = await Activity.find()
       .sort({ timestamp: -1 })
       .limit(5);
-      console.log("Recent activity": recentActivity);
+    console.log("Recent activity: ", recentActivity);
     if (!recentActivity || !Array.isArray(recentActivity)) {
       throw new Error("Recent activity data is not available or not an array");
     }
