@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SummaryCard from "./SummaryCard";
+import { CURRENCY_SYMBOL } from "../../../util/constants";
 
 const CostCard = () => {
   const imgCost = require("../../../images/cost-icon.png");
@@ -27,7 +28,11 @@ const CostCard = () => {
   }, []);
 
   return (
-    <SummaryCard img={imgCost} description={"Total Cost"} number={totalCost} />
+    <SummaryCard
+      img={imgCost}
+      description={"Total Cost"}
+      number={CURRENCY_SYMBOL + totalCost}
+    />
   );
 };
 

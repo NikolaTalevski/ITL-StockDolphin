@@ -42,7 +42,10 @@ const Dashboard = () => {
       </div>
       <div className="section-container">
         <div className="recent-activity section">
-          {/* <RecentActivity /> */}
+          <h4>Recent activity</h4>
+          <div className="activities">
+            <RecentActivity />
+          </div>
           {/* <h4>Recent activity</h4>
         <div className="activites">
           <p className="paragraph">

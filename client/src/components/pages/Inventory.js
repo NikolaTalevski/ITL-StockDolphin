@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Inventorysummary.css";
 import "../AddButton/AddButton.css";
 import "./Inventory.css";
+import { CURRENCY_SYMBOL } from "../../util/constants";
 import ModalAddCategory from "../Modals/ModalAddCategory";
 
 const Inventory = () => {
@@ -9,6 +10,7 @@ const Inventory = () => {
   const [numberCat, setNumberCat] = useState([0]);
   const [numberItems, setNumberItems] = useState([0]);
   const [numberOrders, setNumberOrders] = useState([0]);
+  const [totalCost, setTotalCost] = useState([0]);
 
   useEffect(() => {
     fetch("/api/v1/category", {
@@ -61,6 +63,27 @@ const Inventory = () => {
       });
   }, []);
 
+  useEffect(() => {
+    const fetchOrderTotalPrice = () => {
+      fetch("/api/v1/order/total-price", {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          authorization: `bearer ${localStorage.getItem("jwt")}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setTotalCost(data.totalPrice);
+        })
+
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    fetchOrderTotalPrice();
+  }, []);
+
   return (
     <div>
       <header className="header">
@@ -95,7 +118,9 @@ const Inventory = () => {
         <p>
           Total Orders: <b>{numberOrders}</b>{" "}
         </p>
-        <p>Total Cost: </p>
+        <p>
+          Total Cost: <b>{CURRENCY_SYMBOL + totalCost}</b>{" "}
+        </p>
       </div>
       <ModalAddCategory open={openModal} onClose={() => setOpenModal(false)} />
     </div>

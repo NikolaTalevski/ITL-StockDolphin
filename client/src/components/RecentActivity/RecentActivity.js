@@ -9,14 +9,15 @@ const RecentActivity = () => {
         const res = await fetch("/api/v1/recent-activity", {
           method: "GET",
         });
-        setActivities(res.data);
+        const data = res.json();
+        setActivities(data);
       } catch (err) {
         console.log(err);
       }
     };
 
     fetchActivity();
-    const intervalId = setInterval(fetchActivity, 5000);
+    const intervalId = setInterval(fetchActivity, 1000000);
 
     return () => {
       clearInterval(intervalId);
@@ -28,7 +29,11 @@ const RecentActivity = () => {
       <h4>RecentActivity</h4>
       <ul>
         {activities.map((activity, index) => {
-          <li key={index}>{activity}</li>;
+          return (
+            <li key={index}>
+              <b>{activity.username}</b> {activity.action}
+            </li>
+          );
         })}
       </ul>
     </div>
