@@ -1,0 +1,15 @@
+.reportsactivityhistory {
+    margin-top: 50px;
+}
+
+.activity {
+    padding: 10px;
+}
+
+.activityh {
+    display: flex;
+    justify-content: space-between;
+    padding: 1px;
+    border-radius: 5px;
+    box-shadow: 0.5px 1px 0px 0.5px;
+}

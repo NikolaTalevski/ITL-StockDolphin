@@ -9,8 +9,9 @@ const RecentActivity = () => {
         const res = await fetch("/api/v1/recent-activity", {
           method: "GET",
         });
-        const data = res.json();
+        const data = await res.json();
         setActivities(data);
+        console.log(data);
       } catch (err) {
         console.log(err);
       }
@@ -24,20 +25,19 @@ const RecentActivity = () => {
     };
   }, []);
 
-  return (
-    <div>
-      <h4>RecentActivity</h4>
-      <ul>
-        {activities.map((activity, index) => {
-          return (
-            <li key={index}>
-              <b>{activity.username}</b> {activity.action}
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
+  return activities.map((activity, index) => {
+    return (
+      <>
+        <p key={index} className="activity">
+          <b>{activity.username}</b> has {activity.action} {activity.entityType}{" "}
+          <b>{activity.entityName}</b> {activity.category ? "in" : ""}{" "}
+          <b>
+            {activity.category} {activity.category ? "(Category)" : ""}
+          </b>
+        </p>
+      </>
+    );
+  });
 };
 
 export default RecentActivity;

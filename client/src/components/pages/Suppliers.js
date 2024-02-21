@@ -7,7 +7,7 @@ const Suppliers = () => {
   const [openModal, setOpenModal] = useState(false);
   return (
     <div>
-      <header className="header">
+      <header className="">
         <h1>Suppliers </h1>
         <hr></hr>
       </header>

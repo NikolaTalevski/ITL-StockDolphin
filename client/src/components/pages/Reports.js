@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Reports = () => {
   return (
     <div>
-      <header className="header">
+      <header className="">
         <h1>Reports </h1>
         <hr></hr>
       </header>

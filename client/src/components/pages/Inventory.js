@@ -86,7 +86,7 @@ const Inventory = () => {
 
   return (
     <div>
-      <header className="header">
+      <header className="">
         <h1>Inventory </h1>
         <hr></hr>
       </header>

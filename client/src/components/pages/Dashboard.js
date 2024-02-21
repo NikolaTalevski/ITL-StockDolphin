@@ -31,7 +31,7 @@ const Dashboard = () => {
 
       <div className="section-container">
         <div className="inventory-summary section">
-          <h4>Inventory summary</h4>
+          <h3>Inventory summary</h3>
           <div className="cards">
             <CategoryCard />
             <TotalItemCard />
@@ -42,34 +42,15 @@ const Dashboard = () => {
       </div>
       <div className="section-container">
         <div className="recent-activity section">
-          <h4>Recent activity</h4>
+          <h3>Recent activity</h3>
           <div className="activities">
             <RecentActivity />
           </div>
-          {/* <h4>Recent activity</h4>
-        <div className="activites">
-          <p className="paragraph">
-            Admin has created item <b>Office Pens </b>in
-            <b> Office Supply (Office Category)</b>
-          </p>
-          <p className="paragraph">
-            Admin has created item <b>A4 Paper </b>in
-            <b> Office Supply (Office Category)</b>
-          </p>
-          <p className="paragraph-g">
-            Admin has deleted item <b>Espresso </b>in
-            <b> Kitchen Supply (Kitchen Category)</b>
-          </p>
-          <p className="paragraph">
-            Admin has moved item <b>Mouse </b>in
-            <b> Office Supply (Office Category)</b>
-          </p>
-        </div> */}
         </div>
       </div>
       <div className="section-container">
         <div className="recent-orders section">
-          <h4>Recent orders</h4>
+          <h3>Recent orders</h3>
           <div className="cards">
             {/* <ItemCard
             img={mouse}

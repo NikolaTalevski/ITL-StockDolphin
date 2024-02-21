@@ -1,11 +1,13 @@
 .recentordercard-container {
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: left;
-	
+	justify-content: space-around;
+	/* flex-wrap: wrap; */
+	/* justify-content: left; */
+	margin-left: 150px;
 }
 
 .recentordercard {
+	margin-right: 50px;
 	width: 100px;
 	height: 110px;
 	background-color: white;

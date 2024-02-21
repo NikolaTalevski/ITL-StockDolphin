@@ -8,6 +8,8 @@ import Dashboard from "./components/pages/Dashboard";
 import Inventory from "./components/pages/Inventory";
 import Reports from "./components/pages/Reports";
 import Suppliers from "./components/pages/Suppliers";
+import Activityhistory from "./components/pages/Activityhistory";
+import Inventorysummary from "./components/pages/Inventorysummary";
 
 function App() {
   return (
@@ -20,6 +22,11 @@ function App() {
           <Route path="inventory" element={<Inventory />} />
           <Route path="reports" element={<Reports />} />
           <Route path="suppliers" element={<Suppliers />} />
+          <Route path="reports/activityhistory" element={<Activityhistory />} />
+          <Route
+            path="reports/inventorysummary"
+            element={<Inventorysummary />}
+          />
         </Route>
       </Routes>
       {/* <CustomSharedLayout />
