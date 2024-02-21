@@ -6,7 +6,9 @@ import "./CustomSharedLayout.css";
 const CustomSharedLayout = () => {
   return (
     <div className="custom-shared-layout">
-      <Navbar />
+      <div className="nav-bar">
+        <Navbar />
+      </div>
       <div className="content">
         <Outlet />
       </div>

@@ -3,6 +3,7 @@ import "./RecentOrderList.css";
 
 const RecentOrdersList = () => {
   const [recentOrders, setRecentOrders] = useState([]);
+  const mouse = require("../../../images/mouse.png");
 
   useEffect(() => {
     fetch("/api/v1/order", {
@@ -21,10 +22,10 @@ const RecentOrdersList = () => {
     <div className="recentordercard-container">
       {recentOrders.map((recentOrder) => (
         <div key={recentOrder._id} className="recentordercard">
-          <img alt="Order-Img" className="recentordercard-img" />
+          <img src={mouse} alt="Order-Img" className="recentordercard-img" />
 
           <div className="recentordercard-bottom">
-            <p className="recentordercard-title">{recentOrder.item}</p>
+            <p className="recentordercard-title">{recentOrder.itemName}</p>
             <p className="recentordercard-description">
               <b>{recentOrder.quantity} Units | </b>$ {recentOrder.price}
             </p>

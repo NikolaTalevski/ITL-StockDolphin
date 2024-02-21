@@ -14,16 +14,15 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <section className="grid-container">
-      <nav className="sidebar">
-        <div className="grid-img">
-          <img
-            className="logo"
-            src={require("../../images/logo1.png")}
-            alt="logo"
-          />
-        </div>
-        <div className="grid">
+    <section className="nav-bar-container">
+      <nav className="nav-bar-menu-buttons-container">
+        <img
+          className="logo"
+          src={require("../../images/logo1.png")}
+          alt="logo"
+        />
+
+        <div className="nav-bar-button">
           <img
             src={require("../../images/dashboard.png")}
             alt="dashboard"
@@ -38,7 +37,7 @@ const Navbar = () => {
             Dashboard
           </NavLink>
         </div>
-        <div className="grid">
+        <div className="nav-bar-button">
           <img
             src={require("../../images/inventory.png")}
             alt="inventory"
@@ -49,7 +48,7 @@ const Navbar = () => {
             Inventory
           </NavLink>
         </div>
-        <div className="grid">
+        <div className="nav-bar-button">
           <img
             src={require("../../images/reports.png")}
             alt="reports"
@@ -60,12 +59,14 @@ const Navbar = () => {
             Reports
           </NavLink>
         </div>
-        <div className="grid">
+        <div className="nav-bar-button">
           <NavLink className="navlink" to="/suppliers">
             Suppliers
           </NavLink>
         </div>
-        <div className="signin">
+      </nav>
+      <div className="nav-bar-sign-button-container">
+        <div className="nav-bar-button">
           <img
             src={require("../../images/power.png")}
             alt="power"
@@ -76,7 +77,8 @@ const Navbar = () => {
             Sign In
           </NavLink>
         </div>
-      </nav>
+      </div>
+
       {/* <div className="content">
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />

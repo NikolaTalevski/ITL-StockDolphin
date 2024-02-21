@@ -1,8 +1,16 @@
 .custom-shared-layout {
-    display: flex;
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 5fr;
+}
+
+.nav-bar {
+    display: contents;
+    grid-column: 1 / 2;
 }
 
 .content {
     flex: 1;
-    padding: 20px;
+    grid-column: 2 /2;
+    overflow: auto;
 }

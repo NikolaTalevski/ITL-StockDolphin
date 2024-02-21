@@ -1,12 +1,24 @@
-.grid-container {
-    display: grid;
-    grid-template-columns: auto 1fr;
+.nav-bar-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: rgba(83, 168, 86, 1);
+    /* grid-template-columns: auto 1fr;
     grid-template-rows: max-content;
     position: relative;
-    grid-template-areas: "sidebar";
+    /* grid-template-areas: "sidebar"; */
+} 
+
+.nav-bar-sign-button-container {
+    flex: 0 1 auto;
 }
 
-.sidebar {
+.nav-bar-menu-buttons-container {
+    flex: 1;
+    overflow: auto;
+}
+
+/* .sidebar {
     width: 300px;
     grid-area: sidebar;
     height: 100%;
@@ -14,23 +26,15 @@
     flex-direction: column;
     background-color: rgb(72, 205, 72);
     align-self: start;
-}
+} */
 
-
-
-.grid, .signin {
-    /* text-align: center; */
-    /* width: 200px; */
+.nav-bar-button {
     font-size: 20px;
     padding: 10px;
     margin: 10px;
     border: 1px solid black;
     border-radius: 10px;
-    background-color: rgb(182, 246, 182);
-}
-
-.grid > *, .signin > * {
-    vertical-align: middle;
+    background-color: rgba(239, 239, 239, 1);
 }
 
 .navlink {
@@ -38,7 +42,7 @@
     text-decoration: none;
 }
 
-.signin {
+/* .signin {
     width: 200px;
     font-size: 20px;
     padding: 10px;
@@ -46,11 +50,11 @@
     border: 1px solid black;
     border-radius: 10px;
     background-color: rgb(182, 246, 182);
-}
+/* } */
 
-.signin > * {
+.nav-bar-button > * {
     vertical-align: middle;
-}
+} 
 
 .logo {
     width: 200px;
