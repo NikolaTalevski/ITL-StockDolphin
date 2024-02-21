@@ -67,7 +67,7 @@ const updateOrderHandler = async (req, res) => {
       ...req.body,
       user_id: req.auth.id,
     };
-    await orders.updateOrder(req.params.id, data);
+    await orders.updateOrder(req.params.id, data, req.auth.id);
     return res.status(200).send("");
   } catch (err) {
     console.log(err);
@@ -77,7 +77,7 @@ const updateOrderHandler = async (req, res) => {
 
 const removeOrderHandler = async (req, res) => {
   try {
-    await orders.removeOrder(req.params.id);
+    await orders.removeOrder(req.params.id, req.auth.id);
     return res.status(200).send("Delete successful");
   } catch (err) {
     console.log(err);

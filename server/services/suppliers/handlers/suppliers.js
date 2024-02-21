@@ -60,7 +60,7 @@ const updateSupplierHandler = async (req, res) => {
       ...req.body,
       user_id: req.auth.id,
     };
-    await suppliers.updateSupplier(req.params.id, data);
+    await suppliers.updateSupplier(req.params.id, data, req.auth.id);
     return res.status(204).send("");
   } catch (err) {
     console.log(err);
@@ -70,7 +70,7 @@ const updateSupplierHandler = async (req, res) => {
 
 const removeSupplierHandler = async (req, res) => {
   try {
-    await suppliers.removeSupplier(req.params.id);
+    await suppliers.removeSupplier(req.params.id, req.auth.id);
     return res.status(200).send("Delete successful");
   } catch (err) {
     console.log(err);

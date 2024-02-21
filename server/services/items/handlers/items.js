@@ -15,7 +15,7 @@ const getAllItemsHandler = async (req, res) => {
 
 const getOneItemHandler = async (req, res) => {
   try {
-    const itm = await items.getOneItem(req.params.id);
+    const itm = await items.getOneItem(req.auth.id, req.params.id);
     if (!itm) {
       throw {
         code: 404,
@@ -57,7 +57,7 @@ const updateItemHandler = async (req, res) => {
       ...req.body,
       user_id: req.auth.id,
     };
-    await items.updateItem(req.params.id, data);
+    await items.updateItem(req.params.id, data, req.auth.id);
     return res.status(500).send("");
   } catch (err) {
     console.log(err);
@@ -67,7 +67,7 @@ const updateItemHandler = async (req, res) => {
 
 const removeItemHandler = async (req, res) => {
   try {
-    await items.removeItem(req.params.id);
+    await items.removeItem(req.params.id, req.auth.id);
     return res.status(200).send("Delete successful");
   } catch (err) {
     console.log(err);

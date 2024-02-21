@@ -1,34 +1,72 @@
 const mongoose = require("mongoose");
 
+const { Category } = require("./model");
+const { createActivity } = require("../recent-activity/recent-activity");
 const {
-    Category
-} = require("./model");
+  Activity,
+  ActivityAction,
+  ActivityEntityType,
+} = require("../recent-activity/model");
+const { getOneUser } = require("../users/users");
 
-const getAllCategories = async(user_id) => {
-    return await Category.find({ user_id });
+const getAllCategories = async (user_id) => {
+  return await Category.find({ user_id });
 };
 
-const getOneCategory = async(user_id, id) => {
-    return await Category.findOne({ user_id: user_id ,_id: id});
+const getOneCategory = async (user_id, id) => {
+  return await Category.findOne({ user_id: user_id, _id: id });
 };
 
-const createCategory = async(c) => {
-    const category = new Category(c);
-    return await category.save();
+const createCategory = async (c) => {
+  const category = new Category(c);
+  const newCategory = await category.save();
+  const user = await getOneUser(c.user_id);
+
+  createActivity(
+    new Activity({
+      action: ActivityAction.Created,
+      entityName: newCategory.name,
+      entityType: ActivityEntityType.Category,
+      username: user.username,
+    })
+  );
+  return newCategory;
 };
 
-const updateCategory = async(id, newData) => {
-    return await Category.updateOne({_id: id}, newData);
+const updateCategory = async (id, newData, user_id) => {
+  const updateCategory = await Category.findByIdAndUpdate({ _id: id }, newData);
+  const user = await getOneUser(user_id);
+
+  createActivity(
+    new Activity({
+      action: ActivityAction.Edited,
+      entityName: updateCategory.name,
+      entityType: ActivityEntityType.Category,
+      username: user.username,
+    })
+  );
+  return updateCategory;
 };
 
-const removeCategory = async(id) => {
-    return await Category.deleteOne({_id: id});
+const removeCategory = async (id, user_id) => {
+  const removeCategory = await Category.findByIdAndDelete({ _id: id });
+  const user = await getOneUser(user_id);
+
+  createActivity(
+    new Activity({
+      action: ActivityAction.Deleted,
+      entityName: removeCategory.name,
+      entityType: ActivityEntityType.Category,
+      username: user.username,
+    })
+  );
+  return removeCategory;
 };
 
 module.exports = {
-    getAllCategories,
-    getOneCategory,
-    createCategory,
-    updateCategory,
-    removeCategory
-} 
+  getAllCategories,
+  getOneCategory,
+  createCategory,
+  updateCategory,
+  removeCategory,
+};

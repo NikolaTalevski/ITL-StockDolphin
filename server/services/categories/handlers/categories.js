@@ -60,7 +60,7 @@ const updateCategoryHandler = async (req, res) => {
       ...req.body,
       user_id: req.auth.id,
     };
-    await categories.updateCategory(req.params.id, data);
+    await categories.updateCategory(req.params.id, data, req.auth.id);
     return res.status(204).send("");
   } catch (err) {
     console.log(err);
@@ -70,7 +70,7 @@ const updateCategoryHandler = async (req, res) => {
 
 const removeCategoryHandler = async (req, res) => {
   try {
-    await categories.removeCategory(req.params.id);
+    await categories.removeCategory(req.params.id, req.auth.id);
     return res.status(200).send("Delete successful");
   } catch (err) {
     console.log(err);

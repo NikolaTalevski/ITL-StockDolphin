@@ -1,5 +1,6 @@
 const itemPOST = {
   name: "required|string",
+  categoryId: "required|string",
   image: "string",
 };
 
