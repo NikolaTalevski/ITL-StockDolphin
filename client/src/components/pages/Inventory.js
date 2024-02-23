@@ -4,6 +4,7 @@ import "../AddButton/AddButton.css";
 import "./Inventory.css";
 import { CURRENCY_SYMBOL } from "../../util/constants";
 import ModalAddCategory from "../Modals/ModalAddCategory";
+import CategoryCardList from "../cards/CategoryCard/CategoryCardList";
 
 const Inventory = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -123,6 +124,7 @@ const Inventory = () => {
         </p>
       </div>
       <ModalAddCategory open={openModal} onClose={() => setOpenModal(false)} />
+      <CategoryCardList />
     </div>
   );
 };

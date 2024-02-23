@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
 // import { Route, Routes, NavLink, useNavigate } from "react-router-dom";
@@ -13,6 +13,19 @@ import { NavLink } from "react-router-dom";
 // import SuppliersModal from "../pages/SuppliersModal";
 
 const Navbar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("jwt") ? true : false
+  );
+  const handleSignIn = () => {
+    localStorage.getItem("jwt");
+    localStorage.getItem("username");
+    setIsLoggedIn(true);
+  };
+  const handleSignOut = () => {
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("username");
+    setIsLoggedIn(false);
+  };
   return (
     <section className="nav-bar-container">
       <nav className="nav-bar-menu-buttons-container">
@@ -73,8 +86,16 @@ const Navbar = () => {
             width={40}
             height={40}
           />
-          <NavLink className="navlink" to="/login">
-            Sign In
+          <NavLink className="navlink">
+            {isLoggedIn ? (
+              <NavLink className="navlink" onClick={handleSignOut} to="/login">
+                Sign Out
+              </NavLink>
+            ) : (
+              <NavLink className="navlink" onClick={handleSignIn} to="/login">
+                Sign In
+              </NavLink>
+            )}
           </NavLink>
         </div>
       </div>

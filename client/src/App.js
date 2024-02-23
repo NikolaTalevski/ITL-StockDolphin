@@ -10,6 +10,7 @@ import Reports from "./components/pages/Reports";
 import Suppliers from "./components/pages/Suppliers";
 import Activityhistory from "./components/pages/Activityhistory";
 import Inventorysummary from "./components/pages/Inventorysummary";
+import CategoryOverview from "./components/cards/CategoryOverview/CategoryOverview";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="register" element={<Register />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="inventory" element={<Inventory />} />
+          <Route path="inventory/category" element={<CategoryOverview />} />
           <Route path="reports" element={<Reports />} />
           <Route path="suppliers" element={<Suppliers />} />
           <Route path="reports/activityhistory" element={<Activityhistory />} />

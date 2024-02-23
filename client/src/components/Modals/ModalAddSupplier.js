@@ -25,6 +25,7 @@ const ModalAddSupplier = ({ open, onClose }) => {
       }
       let data = await res.json();
       console.log(data);
+      onClose();
     } catch (err) {
       alert(err);
     }
