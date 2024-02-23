@@ -1,4 +1,5 @@
 const categories = require("../../../pkg/categories/categories");
+const itemCat = require("../../../pkg/items/items");
 const {
   categoryPOST,
   categoryPUT,
@@ -9,7 +10,16 @@ const { validate } = require("../../../pkg/utils/validate");
 const getAllCategoriesHandler = async (req, res) => {
   try {
     const ctg = await categories.getAllCategories(req.auth.id);
-    return res.status(200).send(ctg);
+    const listOfCategoryIds = await Promise.all(
+      ctg.map(async (category) => {
+        const items = await itemCat.getAllItemsByCategoryId(
+          category._id.toString()
+        );
+
+        return { ...category.toJSON(), items };
+      })
+    );
+    return res.status(200).send(listOfCategoryIds);
   } catch (err) {
     console.log(err);
     return res.status(500).send("Internal server error");

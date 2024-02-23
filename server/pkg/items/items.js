@@ -10,6 +10,10 @@ const {
 const { getOneUser } = require("../users/users");
 const { getOneCategory } = require("../categories/categories");
 
+const getAllItemsByCategoryId = async (categoryId) => {
+  return await Item.find({ categoryId: categoryId });
+};
+
 const getAllItems = async (user_id) => {
   return await Item.find({ user_id });
 };
@@ -69,6 +73,7 @@ const removeItem = async (id, user_id) => {
 
 module.exports = {
   getAllItems,
+  getAllItemsByCategoryId,
   getOneItem,
   createItem,
   updateItem,
