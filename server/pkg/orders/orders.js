@@ -10,6 +10,10 @@ const {
 const { getOneUser } = require("../users/users");
 const { getOneItem } = require("../items/items");
 
+const getAllOrdersByItemId = async (itemId) => {
+  return await Order.find({ itemID: itemId });
+};
+
 const getAllOrders = async (user_id) => {
   return await Order.find({ user_id });
 };
@@ -83,6 +87,7 @@ const removeOrder = async (id, user_id) => {
 
 module.exports = {
   getAllOrders,
+  getAllOrdersByItemId,
   getOneOrder,
   getTotalOrderPrice,
   createOrder,

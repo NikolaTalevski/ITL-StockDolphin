@@ -1,4 +1,5 @@
 const items = require("../../../pkg/items/items");
+const ordItm = require("../../../pkg/orders/orders");
 const { itemPOST, itemPUT } = require("../../../pkg/items/items-validate");
 
 const { validate } = require("../../../pkg/utils/validate");
@@ -6,7 +7,14 @@ const { validate } = require("../../../pkg/utils/validate");
 const getAllItemsHandler = async (req, res) => {
   try {
     const itm = await items.getAllItems(req.auth.id);
-    return res.status(200).send(itm);
+    const listOfItemIDs = await Promise.all(
+      itm.map(async (item) => {
+        const orders = await ordItm.getAllOrdersByItemId(item._id.toString());
+
+        return { ...item.toJSON(), orders };
+      })
+    );
+    return res.status(200).send(listOfItemIDs);
   } catch (err) {
     console.log(err);
     return res.status(500).send("Internal server error");
