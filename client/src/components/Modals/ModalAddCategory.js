@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ModalAddCategory.css";
 
-const ModalAddCategory = ({ open, onClose }) => {
+const ModalAddCategory = ({ open, onClose, onAdd }) => {
   const [name, setName] = useState("");
 
   if (!open) return null;
@@ -23,6 +23,8 @@ const ModalAddCategory = ({ open, onClose }) => {
       }
       let data = await res.json();
       console.log(data);
+      onClose();
+      onAdd(data);
     } catch (err) {
       alert(err);
     }

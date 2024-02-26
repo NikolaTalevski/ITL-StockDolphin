@@ -12,6 +12,12 @@ const Inventory = () => {
   const [numberItems, setNumberItems] = useState([0]);
   const [numberOrders, setNumberOrders] = useState([0]);
   const [totalCost, setTotalCost] = useState([0]);
+  const [newCategories, setNewCategories] = useState(null);
+
+  const CategoryAdded = (c) => {
+    console.log(c);
+    setNewCategories(c);
+  };
 
   useEffect(() => {
     fetch("/api/v1/category", {
@@ -89,8 +95,8 @@ const Inventory = () => {
     <div>
       <header className="">
         <h1>Inventory </h1>
-        <hr></hr>
       </header>
+      <hr />
       <div className="top-btn">
         <div className="search">
           <img src={require("../../images/search.png")} alt="search" />
@@ -123,8 +129,12 @@ const Inventory = () => {
           Total Cost: <b>{CURRENCY_SYMBOL + totalCost}</b>{" "}
         </p>
       </div>
-      <ModalAddCategory open={openModal} onClose={() => setOpenModal(false)} />
-      <CategoryCardList />
+      <ModalAddCategory
+        onAdd={CategoryAdded}
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+      />
+      <CategoryCardList newCategories={newCategories} />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import "./ModalDelete.css";
 
-const ModalDelete = ({ open, onClose, onDelete }) => {
+const ModalDelete = ({ open, onClose, onDelete, text }) => {
   if (!open) return null;
 
   const handleConfirm = () => {
@@ -17,9 +17,7 @@ const ModalDelete = ({ open, onClose, onDelete }) => {
         }}
         className="modal-container"
       >
-        <p className="modal-container-header">
-          Are you sure you want to delete this supplier?
-        </p>
+        <p className="modal-container-header">{text}</p>
         <button className="modal-close-btn" onClick={onClose}>
           Cancel
         </button>

@@ -3,12 +3,17 @@ import "./SupplierList.css";
 import ModalDelete from "../../Modals/ModalDelete";
 import ModalEditSupplier from "../../Modals/ModalEditSupplier";
 
-const SupplierList = () => {
+const SupplierList = (props) => {
   const [suppliers, setSuppliers] = useState([]);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [selectedSupplierId, setSelectedSupplierId] = useState(null);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [selectedSupplier, setSelectedSupplier] = useState(null);
+
+  useEffect(() => {
+    if (props.newSupplies !== null)
+      setSuppliers([...suppliers, props.newSupplies]);
+  }, [props.newSupplies]);
 
   useEffect(() => {
     fetch("/api/v1/supplier", {
@@ -128,6 +133,7 @@ const SupplierList = () => {
             open={openDeleteModal}
             onClose={() => setOpenDeleteModal(false)}
             onDelete={handleDeleteSupplier}
+            text={"Are you sure you want to delete this supplier?"}
           />
           <ModalEditSupplier
             open={openEditModal}

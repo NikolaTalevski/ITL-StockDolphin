@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const ModalAddSupplier = ({ open, onClose }) => {
+const ModalAddSupplier = ({ open, onClose, onAdd }) => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [phonenumber, setPhonenumber] = useState("");
@@ -26,6 +26,7 @@ const ModalAddSupplier = ({ open, onClose }) => {
       let data = await res.json();
       console.log(data);
       onClose();
+      onAdd(data);
     } catch (err) {
       alert(err);
     }

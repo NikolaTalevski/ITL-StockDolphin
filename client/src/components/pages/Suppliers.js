@@ -5,6 +5,12 @@ import SupplierList from "../cards/SupplierCard/SupplierList";
 
 const Suppliers = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [newSupplies, setNewSupplies] = useState(null);
+
+  const SupplierAdded = (s) => {
+    console.log(s);
+    setNewSupplies(s);
+  };
   return (
     <div>
       <header className="">
@@ -29,9 +35,13 @@ const Suppliers = () => {
       </div>
 
       <div className="supplier-cards">
-        <SupplierList />
+        <SupplierList newSupplies={newSupplies} />
       </div>
-      <ModalAddSupplier open={openModal} onClose={() => setOpenModal(false)} />
+      <ModalAddSupplier
+        onAdd={SupplierAdded}
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+      />
     </div>
   );
 };
