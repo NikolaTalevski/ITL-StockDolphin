@@ -3,12 +3,16 @@ import { NavLink, useLocation } from "react-router-dom";
 import "./CategoryOverview.css";
 import ModalDelete from "../../Modals/ModalDelete";
 import ModalAddItem from "../../Modals/ModalAddItem";
+import ModalEditCategory from "../../Modals/ModalEditCategory";
 
 const CategoryOverview = () => {
   const [items, setItems] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const categoryId = useLocation().state.categoryId;
 
   useEffect(() => {
@@ -31,6 +35,11 @@ const CategoryOverview = () => {
     setOpenDeleteModal(true);
   };
 
+  const handleEditClick = (category) => {
+    setSelectedCategory(category);
+    setOpenEditModal(true);
+  };
+
   const handleDeleteItem = async () => {
     try {
       const res = await fetch(`/api/v1/item/${selectedItemId}`, {
@@ -50,8 +59,41 @@ const CategoryOverview = () => {
     }
   };
 
+  const handleEditCategory = async (name) => {
+    try {
+      const res = await fetch(`/api/v1/category/${selectedCategory._id}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+          authorization: `bearer ${localStorage.getItem("jwt")}`,
+        },
+        body: JSON.stringify({ name }),
+      });
+      if (!res.ok) {
+        throw "Failed to edit category";
+      }
+      const editedCategory = {
+        ...selectedCategory,
+        name,
+      };
+      setCategories(
+        categories.map((c) =>
+          c._id === selectedCategory._id ? editedCategory : c
+        )
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
+      <div>
+        <h1>
+          Inventory {">"} {categoryId.name}
+        </h1>
+        <hr />
+      </div>
       <div className="add">
         <button className="add-btn" onClick={() => setOpenModal(true)}>
           <img src={require("../../../images/addnew.png")} alt="addnew" />
@@ -96,6 +138,18 @@ const CategoryOverview = () => {
         />
         <ModalAddItem open={openModal} onClose={() => setOpenModal(false)} />
       </div>
+      <div className="add">
+        <button className="add-btn" onClick={() => handleEditClick(categoryId)}>
+          <img src={require("../../../images/editbtn.png")} alt="edit" />
+          <span>Edit Category</span>
+        </button>
+      </div>
+      <ModalEditCategory
+        open={openEditModal}
+        onClose={() => setOpenEditModal(false)}
+        onUpdate={handleEditCategory}
+        category={selectedCategory}
+      />
     </>
   );
 };

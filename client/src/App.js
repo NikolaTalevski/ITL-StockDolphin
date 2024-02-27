@@ -11,6 +11,7 @@ import Suppliers from "./components/pages/Suppliers";
 import Activityhistory from "./components/pages/Activityhistory";
 import Inventorysummary from "./components/pages/Inventorysummary";
 import CategoryOverview from "./components/cards/CategoryOverview/CategoryOverview";
+import ItemOverview from "./components/cards/ItemOverview/ItemOverview";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="inventory" element={<Inventory />} />
           <Route path="inventory/category" element={<CategoryOverview />} />
+          <Route path="inventory/category/item" element={<ItemOverview />} />
           <Route path="reports" element={<Reports />} />
           <Route path="suppliers" element={<Suppliers />} />
           <Route path="reports/activityhistory" element={<Activityhistory />} />
