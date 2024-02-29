@@ -4,19 +4,26 @@ import "./CategoryOverview.css";
 import ModalDelete from "../../Modals/ModalDelete";
 import ModalAddItem from "../../Modals/ModalAddItem";
 import ModalEditCategory from "../../Modals/ModalEditCategory";
+import ItemsList from "./ItemsList";
 
 const CategoryOverview = () => {
-  const [items, setItems] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [newItems, setNewItems] = useState(null);
   const [openModal, setOpenModal] = useState(false);
-  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [category, setCategory] = useState("");
   const [openEditModal, setOpenEditModal] = useState(false);
-  const [selectedItemId, setSelectedItemId] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState(null);
   const categoryId = useLocation().state.categoryId;
 
+  const ItemAdded = (i) => {
+    console.log(i);
+    setNewItems(i);
+  };
+
+  const handleEditClick = () => {
+    setOpenEditModal(true);
+  };
+
   useEffect(() => {
-    fetch("/api/v1/item", {
+    fetch(`/api/v1/category/${categoryId}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -24,63 +31,26 @@ const CategoryOverview = () => {
       },
     })
       .then((response) => response.json())
-      .then((data) => {
-        setItems(data.filter((i) => i.categoryId === categoryId));
-      })
+      .then((data) => setCategory(data))
       .catch((err) => console.err);
   }, []);
 
-  const handleDeleteClick = (itemId) => {
-    setSelectedItemId(itemId);
-    setOpenDeleteModal(true);
-  };
-
-  const handleEditClick = (category) => {
-    setSelectedCategory(category);
-    setOpenEditModal(true);
-  };
-
-  const handleDeleteItem = async () => {
-    try {
-      const res = await fetch(`/api/v1/item/${selectedItemId}`, {
-        method: "DELETE",
-        headers: {
-          "content-type": "application/json",
-          authorization: `bearer ${localStorage.getItem("jwt")}`,
-        },
-      });
-      if (!res.ok) {
-        throw "Failed to delete category";
-      }
-      setItems(items.filter((item) => item._id !== selectedItemId));
-      setOpenDeleteModal(false);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   const handleEditCategory = async (name) => {
     try {
-      const res = await fetch(`/api/v1/category/${selectedCategory._id}`, {
+      let reqBody = category;
+      reqBody.name = name;
+      const res = await fetch(`/api/v1/category/${category._id}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
           authorization: `bearer ${localStorage.getItem("jwt")}`,
         },
-        body: JSON.stringify({ name }),
+        body: JSON.stringify(reqBody),
       });
       if (!res.ok) {
         throw "Failed to edit category";
       }
-      const editedCategory = {
-        ...selectedCategory,
-        name,
-      };
-      setCategories(
-        categories.map((c) =>
-          c._id === selectedCategory._id ? editedCategory : c
-        )
-      );
+      setCategory(reqBody);
     } catch (err) {
       console.log(err);
     }
@@ -90,7 +60,7 @@ const CategoryOverview = () => {
     <>
       <div>
         <h1>
-          Inventory {">"} {categoryId.name}
+          Inventory {">"} {category.name}
         </h1>
         <hr />
       </div>
@@ -100,46 +70,15 @@ const CategoryOverview = () => {
           <span>ADD ITEM</span>
         </button>
       </div>
-      <div className="items-container">
-        {items.map((item) => (
-          <div className="item-card">
-            <NavLink
-              className="navlink-item"
-              to="/inventory/category/item"
-              state={{ itemId: item._id }}
-            >
-              <img alt="Item-Img" />
-              <div>
-                <h4>{item.name}</h4>
-                <p>
-                  <b>{item.orders.length} Purchase records</b> |{" "}
-                  {item.orders.price}
-                </p>
-              </div>
-            </NavLink>
-            <div className="delbtn-item">
-              <button onClick={() => handleDeleteClick(item._id)} className="">
-                <img
-                  className="deletebtn"
-                  src={require("../../../images/deletebtn.png")}
-                  alt="deletebtn"
-                  width={20}
-                  height={20}
-                />
-              </button>
-            </div>
-          </div>
-        ))}
-        <ModalDelete
-          open={openDeleteModal}
-          onClose={() => setOpenDeleteModal(false)}
-          onDelete={handleDeleteItem}
-          text={"Are you sure you want to delete this item?"}
-        />
-        <ModalAddItem open={openModal} onClose={() => setOpenModal(false)} />
-      </div>
+      <ItemsList newItems={newItems} />
+      <ModalAddItem
+        open={openModal}
+        categoryId={categoryId}
+        onClose={() => setOpenModal(false)}
+        onAdd={ItemAdded}
+      />
       <div className="add">
-        <button className="add-btn" onClick={() => handleEditClick(categoryId)}>
+        <button className="add-btn" onClick={() => handleEditClick()}>
           <img src={require("../../../images/editbtn.png")} alt="edit" />
           <span>Edit Category</span>
         </button>
@@ -148,7 +87,7 @@ const CategoryOverview = () => {
         open={openEditModal}
         onClose={() => setOpenEditModal(false)}
         onUpdate={handleEditCategory}
-        category={selectedCategory}
+        category={category}
       />
     </>
   );

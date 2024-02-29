@@ -17,9 +17,10 @@ const Inventory = () => {
   const CategoryAdded = (c) => {
     console.log(c);
     setNewCategories(c);
+    fetchCategories();
   };
 
-  useEffect(() => {
+  const fetchCategories = () => {
     fetch("/api/v1/category", {
       method: "GET",
       headers: {
@@ -34,7 +35,9 @@ const Inventory = () => {
       .catch((err) => {
         console.log(err.message);
       });
-  }, []);
+  };
+
+  useEffect(fetchCategories, []);
 
   useEffect(() => {
     fetch("/api/v1/item", {
@@ -134,7 +137,10 @@ const Inventory = () => {
         open={openModal}
         onClose={() => setOpenModal(false)}
       />
-      <CategoryCardList newCategories={newCategories} />
+      <CategoryCardList
+        newCategories={newCategories}
+        onCategoryDeleted={fetchCategories}
+      />
     </div>
   );
 };

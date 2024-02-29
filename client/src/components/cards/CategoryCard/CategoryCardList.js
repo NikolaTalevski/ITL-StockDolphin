@@ -47,6 +47,7 @@ const CategoryCardList = (props) => {
         categories.filter((category) => category._id !== selectedCategoryId)
       );
       setOpenDeleteModal(false);
+      props.onCategoryDeleted();
     } catch (err) {
       console.log(err);
     }
@@ -59,13 +60,21 @@ const CategoryCardList = (props) => {
           <NavLink
             className="navlink-category"
             to="/inventory/category"
-            state={{ categoryId: category._id }}
+            state={{ categoryId: category._id, categoryName: category.name }}
           >
             <img alt="Category-Img" />
             <div>
               <h4>{category.name}</h4>
               <p>
-                <b>{category.items.length} Items</b> | price
+                <b>{category.items.length} Items</b> | {"$"} {""}{" "}
+                {category.items.reduce((totalPrice, currentItem) => {
+                  return (
+                    totalPrice +
+                    currentItem.orders.reduce((previousPrice, currentOrder) => {
+                      return previousPrice + Number(currentOrder.price);
+                    }, 0)
+                  );
+                }, 0)}
               </p>
             </div>
           </NavLink>
