@@ -8,6 +8,8 @@ const {
   ActivityEntityType,
 } = require("../recent-activity/model");
 const { getOneUser } = require("../users/users");
+const { Item } = require("../items/model");
+const { Order } = require("../orders/model");
 
 const getAllCategories = async (user_id) => {
   return await Category.find({ user_id });
@@ -30,7 +32,7 @@ const createCategory = async (c) => {
       username: user.username,
     })
   );
-  return newCategory;
+  return newCategory.toJSON();
 };
 
 const updateCategory = async (id, newData, user_id) => {
@@ -49,7 +51,13 @@ const updateCategory = async (id, newData, user_id) => {
 };
 
 const removeCategory = async (id, user_id) => {
-  const removeCategory = await Category.findByIdAndDelete({ _id: id });
+  const removeCategory = await Category.findOneAndDelete({ _id: id });
+  const itemsToBeDeleted = await Item.find({ categoryId: id });
+  await Item.deleteMany({ categoryId: id });
+
+  itemsToBeDeleted.forEach(
+    async (i) => await Order.deleteMany({ itemID: i._id })
+  );
   const user = await getOneUser(user_id);
 
   createActivity(

@@ -9,6 +9,7 @@ const {
 } = require("../recent-activity/model");
 const { getOneUser } = require("../users/users");
 const { getOneCategory } = require("../categories/categories");
+const { Order } = require("../orders/model");
 
 const getAllItemsByCategoryId = async (categoryId) => {
   return await Item.find({ categoryId: categoryId });
@@ -38,7 +39,7 @@ const createItem = async (i) => {
     })
   );
 
-  return newItem;
+  return { ...newItem.toJSON(), orders: [] };
 };
 
 const updateItem = async (id, newData, user_id) => {
@@ -58,6 +59,7 @@ const updateItem = async (id, newData, user_id) => {
 
 const removeItem = async (id, user_id) => {
   const removeItem = await Item.findByIdAndDelete({ _id: id });
+  await Order.deleteMany({ itemID: id });
   const user = await getOneUser(user_id);
 
   createActivity(

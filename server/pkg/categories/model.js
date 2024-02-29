@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { Item } = require("../items/model");
 
 const categorySchema = new mongoose.Schema(
   {

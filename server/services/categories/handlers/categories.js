@@ -1,5 +1,7 @@
 const categories = require("../../../pkg/categories/categories");
 const itemCat = require("../../../pkg/items/items");
+const ordItm = require("../../../pkg/orders/orders");
+
 const {
   categoryPOST,
   categoryPUT,
@@ -15,8 +17,16 @@ const getAllCategoriesHandler = async (req, res) => {
         const items = await itemCat.getAllItemsByCategoryId(
           category._id.toString()
         );
+        const itemsWithOrders = await Promise.all(
+          items.map(async (item) => {
+            const orders = await ordItm.getAllOrdersByItemId(
+              item._id.toString()
+            );
 
-        return { ...category.toJSON(), items };
+            return { ...item.toJSON(), orders };
+          })
+        );
+        return { ...category.toJSON(), items: itemsWithOrders };
       })
     );
     return res.status(200).send(listOfCategoryIds);
@@ -53,7 +63,7 @@ const createCategoryHandler = async (req, res) => {
       user_id: req.auth.id,
     };
     const ctg = await categories.createCategory(data);
-    return res.status(200).send(ctg);
+    return res.status(200).send({ ...ctg, items: [] });
   } catch (err) {
     console.log(err);
     return res.status(500).send("Internal server error");
