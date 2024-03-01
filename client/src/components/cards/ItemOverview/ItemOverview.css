@@ -1,0 +1,77 @@
+.header {
+    margin-left: 50px;
+}
+
+.hr-header {
+    margin-left: 50px;
+}
+
+.order-overview {
+    display: flex;
+    margin-left: 50px;
+    /* margin-top: 50px; */
+    margin-bottom: 20px;
+}
+
+.order-overview > p {
+    margin-right: 100px;
+}
+
+.add-ord-btn {
+    background-color: rgb(21, 157, 21);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    width: 170px;
+    margin-left: 750px;
+    /* margin-top: 50px; */
+    /* margin-right: 100px; */
+}
+
+.add-ord-btn:hover {
+    cursor: pointer;
+    width: 180px;
+    font-size: 15px;
+}
+
+.add-ord-btn > * {
+    vertical-align: middle;
+}
+
+.ord-inv {
+    width: 800px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 50px;
+    margin-bottom: 20px;
+}
+
+.ord-inv > h1 {
+    /* font-size: 40px; */
+}
+
+.ord-inv > * {
+    vertical-align: middle;
+}
+
+.add-inv-btn {
+    background-color: rgb(21, 157, 21);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    width: 170px;
+    font-size: 20px;
+}
+
+.add-inv-btn:hover {
+    cursor: pointer;
+    font-size: 21px;
+}
+
+.hr {
+    margin-left: 50px;
+    width: 800px;
+}

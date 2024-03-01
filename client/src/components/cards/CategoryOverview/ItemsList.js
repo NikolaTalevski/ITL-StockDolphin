@@ -58,7 +58,7 @@ const ItemsList = (props) => {
           <NavLink
             className="navlink-item"
             to="/inventory/category/item"
-            state={{ itemId: item._id }}
+            state={{ itemId: item._id, itemName: item.name }}
           >
             <img alt="Item-Img" />
             <div>
