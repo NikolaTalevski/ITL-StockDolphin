@@ -53,10 +53,10 @@
     justify-content: space-between;
     
 }
-
+/* 
 .ord-inv > h1 {
-    /* font-size: 40px; */
-}
+    font-size: 40px;
+} */
 
 .ord-inv > * {
     vertical-align: middle;
