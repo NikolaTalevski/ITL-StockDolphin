@@ -2,14 +2,14 @@ const invoicePOST = {
   name: "required|string",
   supplier: "required|string",
   date: "date",
-  orders: "required|string",
+  orders: "required|array",
 };
 
 const invoicePUT = {
   name: "string",
   supplier: "string",
   date: "date",
-  orders: "string",
+  orders: "array",
 };
 
 module.exports = {

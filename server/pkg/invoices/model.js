@@ -5,7 +5,12 @@ const invoiceSchema = new mongoose.Schema(
     name: String,
     supplier: String,
     date: Date,
-    orders: String,
+    orders: [
+      {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: "orders",
+      },
+    ],
     user_id: {
       type: mongoose.SchemaTypes.ObjectId,
       ref: "users",
