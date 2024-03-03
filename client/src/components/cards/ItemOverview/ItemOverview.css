@@ -8,7 +8,7 @@
 
 
 .orders-list {
-    width: 800px;
+    width: 60%;
     margin-left: 50px;
     margin-bottom: 20px;
 }
@@ -80,4 +80,44 @@
 .hr {
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.edit-item {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin-right: 20px;
+    margin-top: 50px;
+}
+
+.input-item-name {
+    width: 80%;
+    margin-bottom: 80px;
+    border: 2px solid black;
+    font-size: 25px;
+    padding: 15px;
+}
+
+.no-img {
+    width: 80%;
+    height: 50%;
+    margin-bottom: 20px;
+    border: 1px solid black;
+}
+
+.item-overview-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.lower-btn {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.move-item, .edit-itm {
+    width: 100px;
+
 }

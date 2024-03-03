@@ -64,6 +64,7 @@ const ItemOverview = () => {
         </h1>
       </header>
       <hr className="hr-header" />
+
       <div className="order-overview">
         <p>
           Total Orders: <b>{orders.length}</b>
@@ -92,18 +93,39 @@ const ItemOverview = () => {
           </button>
         </div>
       </div>
-      <div className="orders-list">
-        <div className="ord-inv">
-          <h1>Orders</h1>
-          <button
-            className="add-inv-btn"
-            onClick={() => setOpenInvoiceModal(true)}
-          >
-            <span>Generate Invoice</span>
-          </button>
+      <div className="item-overview-container">
+        <div className="orders-list">
+          <div className="ord-inv">
+            <h1>Orders</h1>
+            <button
+              className="add-inv-btn"
+              onClick={() => setOpenInvoiceModal(true)}
+            >
+              <span>Generate Invoice</span>
+            </button>
+          </div>
+          <hr className="hr" />
+          <OrdersList orders={orders} />
         </div>
-        <hr className="hr" />
-        <OrdersList orders={orders} />
+        <div className="edit-item">
+          <img
+            src={require("../../../images/no-img.png")}
+            alt="no-img"
+            className="no-img"
+          />
+          <input
+            className="input-item-name"
+            type="text"
+            value={itemName}
+            name="itemName"
+          />
+          <div className="lower-btn">
+            <button className="move-item">
+              <img src={require("../../../images/add-folder.png")} alt="move" />
+            </button>
+            <button className="edit-itm">SAVE</button>
+          </div>
+        </div>
       </div>
 
       <ModalAddOrder
