@@ -65,8 +65,12 @@ const updateItemHandler = async (req, res) => {
       ...req.body,
       user_id: req.auth.id,
     };
-    await items.updateItem(req.params.id, data, req.auth.id);
-    return res.status(500).send("");
+    const updatedItem = await items.updateItem(
+      req.params.id,
+      data,
+      req.auth.id
+    );
+    return res.status(200).send(updatedItem);
   } catch (err) {
     console.log(err);
     return res.status(500).send("Internal server error");
