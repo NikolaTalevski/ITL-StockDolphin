@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const ModalAddInvoice = ({ open, onClose }) => {
   const [name, setName] = useState("");
   const [supplier, setSupplier] = useState("");
-  const [orders, setOrders] = useState("");
+  const [orders, setOrders] = useState([]);
 
   if (!open) return null;
 

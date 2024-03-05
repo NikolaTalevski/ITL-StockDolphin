@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "./OrdersList.css";
 
-const OrdersList = ({ orders }) => {
+const OrdersList = ({ orders }, props) => {
+  // const [orders, setOrders] = useState([]);
+
+  // useEffect(() => {
+  //   if (props.newOrders !== null) setOrders([...orders, props.newOrders]);
+  // }, [props.newOrders]);
+
   return (
     <table className="myTable">
       <thead>

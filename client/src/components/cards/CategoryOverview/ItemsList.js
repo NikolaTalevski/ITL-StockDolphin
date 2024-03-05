@@ -7,6 +7,7 @@ const ItemsList = (props) => {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
   const categoryId = useLocation().state.categoryId;
+  const noimg = require("../../../images/no-img.png");
 
   useEffect(() => {
     if (props.newItems !== null) setItems([...items, props.newItems]);
@@ -58,12 +59,12 @@ const ItemsList = (props) => {
           <NavLink
             className="navlink-item"
             to="/inventory/category/item"
-            state={{ itemId: item._id, itemName: item.name }}
+            state={{ item, itemId: item._id, itemName: item.name }}
           >
-            <img alt="Item-Img" />
+            <img alt="Item-Img" src={noimg} className="itemcard-img" />
             <div>
-              <h4>{item.name}</h4>
-              <p>
+              <h4 className="item-name">{item.name}</h4>
+              <p className="item-info">
                 <b>{item.orders.length} Purchase records</b> | {"$"}{" "}
                 {item.orders.reduce((previousPrice, currentOrder) => {
                   return previousPrice + Number(currentOrder.price);
@@ -72,9 +73,12 @@ const ItemsList = (props) => {
             </div>
           </NavLink>
           <div className="delbtn-item">
-            <button onClick={() => handleDeleteClick(item._id)} className="">
+            <button
+              onClick={() => handleDeleteClick(item._id)}
+              className="del-btn-item"
+            >
               <img
-                className="deletebtn"
+                className="delete-icon-item"
                 src={require("../../../images/deletebtn.png")}
                 alt="deletebtn"
                 width={20}

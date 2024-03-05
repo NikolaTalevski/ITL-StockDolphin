@@ -28,7 +28,7 @@ const ModalAddOrder = ({ open, onClose, onAdd }) => {
       let data = await res.json();
       console.log(data);
       onClose();
-      //   onAdd(data);
+      onAdd(data);
     } catch (err) {
       alert(err);
     }

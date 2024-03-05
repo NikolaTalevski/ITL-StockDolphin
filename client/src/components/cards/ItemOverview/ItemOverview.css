@@ -119,5 +119,12 @@
 
 .move-item, .edit-itm {
     width: 100px;
+    background-color: rgb(55, 188, 55);
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
 
+.move-item:hover, .edit-itm:hover {
+    cursor: pointer;
 }

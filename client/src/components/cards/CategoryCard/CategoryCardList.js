@@ -7,6 +7,7 @@ const CategoryCardList = (props) => {
   const [categories, setCategories] = useState([]);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+  const noimg = require("../../../images/no-img.png");
 
   useEffect(() => {
     if (props.newCategories !== null)
@@ -62,10 +63,10 @@ const CategoryCardList = (props) => {
             to="/inventory/category"
             state={{ categoryId: category._id, categoryName: category.name }}
           >
-            <img alt="Category-Img" />
+            <img alt="Category-Img" src={noimg} className="categorycard-img" />
             <div>
-              <h4>{category.name}</h4>
-              <p>
+              <h4 className="cat-name">{category.name}</h4>
+              <p className="cat-info">
                 <b>{category.items.length} Items</b> | {"$"} {""}{" "}
                 {category.items.reduce((totalPrice, currentItem) => {
                   return (
@@ -78,7 +79,7 @@ const CategoryCardList = (props) => {
               </p>
             </div>
           </NavLink>
-          <p>Updated At:</p>
+          <p className="cat-upd">Updated At:</p>
           <div className="upddelbtn">
             <p className="upd">{category.updatedAt}</p>
             <button
@@ -86,7 +87,7 @@ const CategoryCardList = (props) => {
               className="delbtn"
             >
               <img
-                className="deletebtn"
+                className="delete-icon"
                 src={require("../../../images/deletebtn.png")}
                 alt="deletebtn"
                 width={20}
