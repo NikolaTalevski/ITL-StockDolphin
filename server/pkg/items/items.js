@@ -43,7 +43,9 @@ const createItem = async (i) => {
 };
 
 const updateItem = async (id, newData, user_id) => {
-  const updateItem = await Item.findByIdAndUpdate({ _id: id }, newData);
+  const updateItem = await Item.findByIdAndUpdate({ _id: id }, newData, {
+    returnOriginal: false,
+  });
   const user = await getOneUser(user_id);
 
   createActivity(
