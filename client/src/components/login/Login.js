@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
 
@@ -8,6 +8,15 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    localStorage.clear();
+    onSignInChange();
+  }, []);
+
+  const onSignInChange = () => {
+    window.dispatchEvent(new Event("signinChange"));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,6 +36,7 @@ const Login = () => {
       let data = await res.json();
       localStorage.setItem("username", username);
       localStorage.setItem("jwt", data.token);
+      onSignInChange();
       setSuccess(true);
     } catch (err) {
       alert(err);

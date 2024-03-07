@@ -1,31 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
-// import { Route, Routes, NavLink, useNavigate } from "react-router-dom";
-// import Dashboard from "../pages/Dashboard";
-// import Inventory from "../pages/Inventory";
-// import Reports from "../pages/Reports";
-// import Suppliers from "../pages/Suppliers";
-// import Login from "../login/Login";
-// import Activityhistory from "../pages/Activityhistory";
-// import Inventorysummary from "../pages/Inventorysummary";
-// import Register from "../register/Register";
-// import SuppliersModal from "../pages/SuppliersModal";
 
 const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    localStorage.getItem("jwt") ? true : false
-  );
-  const handleSignIn = () => {
-    localStorage.getItem("jwt");
-    localStorage.getItem("username");
-    setIsLoggedIn(true);
-  };
-  const handleSignOut = () => {
-    localStorage.removeItem("jwt");
-    localStorage.removeItem("username");
-    setIsLoggedIn(false);
-  };
+  const signInText = () =>
+    localStorage.getItem("username") ? "Sign out" : "Sing in";
+  const [loginText, setLoginText] = useState(signInText);
+
+  useEffect(() => {
+    window.addEventListener("signinChange", () => {
+      setLoginText(signInText);
+    });
+  });
+
   return (
     <section className="nav-bar-container">
       <nav className="nav-bar-menu-buttons-container">
@@ -86,39 +73,11 @@ const Navbar = () => {
             width={40}
             height={40}
           />
-          <NavLink className="navlink">
-            {isLoggedIn ? (
-              <NavLink className="navlink" onClick={handleSignOut} to="/login">
-                Sign Out
-              </NavLink>
-            ) : (
-              <NavLink className="navlink" onClick={handleSignIn} to="/login">
-                Sign In
-              </NavLink>
-            )}
+          <NavLink className="navlink" to="/login">
+            {loginText}
           </NavLink>
         </div>
       </div>
-
-      {/* <div className="content">
-        <Routes>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/inventory" element={<Inventory />} />
-          <Route path="/reports" element={<Reports />} />
-          <Route path="/suppliers" element={<Suppliers />} />
-          <Route
-            path="/reports/activityhistory"
-            element={<Activityhistory />}
-          />
-          <Route
-            path="/reports/inventorysummary"
-            element={<Inventorysummary />}
-          />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/suppliers/modal" element={<SuppliersModal />} />
-        </Routes>
-      </div> */}
     </section>
   );
 };

@@ -4,25 +4,39 @@ import "./ItemOverview.css";
 import ModalAddOrder from "../../Modals/ModalAddOrder";
 import ModalAddInvoice from "../../Modals/ModalAddInvoice";
 import OrdersList from "./OrdersList";
+import ModalMoveItem from "../../Modals/ModalMoveItem";
 
 const ItemOverview = () => {
-  const [item, setItem] = useState(useLocation().state.item);
+  const [item, setItem] = useState({});
   const [orders, setOrders] = useState([]);
   const [invoices, setInvoices] = useState([]);
   const [openOrderModal, setOpenOrderModal] = useState(false);
   const [openInvoiceModal, setOpenInvoiceModal] = useState(false);
-  const [editedItem, setEditedItem] = useState({
-    name: item.name,
-    image: item.image,
-    categoryId: item.categoryId,
-  });
+  const [openMoveItemModal, setOpenMoveItemModal] = useState(false);
+  const [editedItem, setEditedItem] = useState({});
   const [newOrders, setNewOrders] = useState(null);
-  // const itemId = useLocation().state.itemId;
+  const itemId = useLocation().state.itemId;
   // const itemName = useLocation().state.itemName;
 
-  const OrderAdded = (o) => {
-    setNewOrders(o);
+  const OrderAdded = (newOrder) => {
+    setNewOrders(newOrder);
   };
+
+  useEffect(() => {
+    fetch(`/api/v1/item/${itemId}`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("jwt")}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setItem(data);
+        setEditedItem(data);
+      })
+      .catch((err) => console.err);
+  }, [itemId]);
 
   useEffect(() => {
     fetch("/api/v1/order", {
@@ -34,12 +48,16 @@ const ItemOverview = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        setOrders(data.filter((o) => o.itemID === item._id));
+        setOrders(data.filter((o) => o.itemID === itemId));
       })
       .catch((err) => console.err);
-  }, [item]);
+  }, [itemId]);
 
   useEffect(() => {
+    getInvoices();
+  }, [orders]);
+
+  const getInvoices = () => {
     fetch("/api/v1/invoice", {
       method: "GET",
       headers: {
@@ -58,19 +76,22 @@ const ItemOverview = () => {
         )
       )
       .catch((err) => console.err);
-  }, [orders]);
+  };
 
-  const handleSaveItem = () => {
+  const handleSaveItem = (updateItem) => {
     fetch(`/api/v1/item/${item._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
         authorization: `bearer ${localStorage.getItem("jwt")}`,
       },
-      body: JSON.stringify(editedItem),
+      body: JSON.stringify(updateItem),
     })
       .then((response) => response.json())
-      .then((data) => setItem(data))
+      .then((data) => {
+        console.log("Update item: ", data);
+        setItem(data);
+      })
       .catch((err) => console.err);
   };
 
@@ -123,7 +144,7 @@ const ItemOverview = () => {
             </button>
           </div>
           <hr className="hr" />
-          <OrdersList orders={orders} newOrders={newOrders} />
+          <OrdersList orders={orders} newOrder={newOrders} />
         </div>
         <div className="edit-item">
           <img
@@ -143,10 +164,16 @@ const ItemOverview = () => {
             }}
           />
           <div className="lower-btn">
-            <button className="move-item">
+            <button
+              className="move-item"
+              onClick={() => setOpenMoveItemModal(true)}
+            >
               <img src={require("../../../images/add-folder.png")} alt="move" />
             </button>
-            <button className="edit-itm" onClick={() => handleSaveItem()}>
+            <button
+              className="edit-itm"
+              onClick={() => handleSaveItem(editedItem)}
+            >
               SAVE
             </button>
           </div>
@@ -157,10 +184,22 @@ const ItemOverview = () => {
         onAdd={OrderAdded}
         open={openOrderModal}
         onClose={() => setOpenOrderModal(false)}
+        item={item}
+      />
+      <ModalMoveItem
+        open={openMoveItemModal}
+        onClose={() => setOpenMoveItemModal(false)}
+        onMoveItem={(categoryId) => {
+          item.categoryId = categoryId;
+          handleSaveItem(item);
+        }}
+        categoryId={item.categoryId}
       />
       <ModalAddInvoice
         open={openInvoiceModal}
         onClose={() => setOpenInvoiceModal(false)}
+        onInvoiceAdded={() => getInvoices()}
+        orders={orders}
       />
     </div>
   );

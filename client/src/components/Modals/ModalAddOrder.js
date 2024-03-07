@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 
-const ModalAddOrder = ({ open, onClose, onAdd }) => {
+const ModalAddOrder = ({ open, onClose, onAdd, item }) => {
   const [supplier, setSupplier] = useState("");
   const [quantity, setQuantity] = useState("");
   const [price, setPrice] = useState("");
   const itemID = useLocation().state.itemId;
   const itemName = useLocation().state.itemName;
+  const [newOrder, setNewOrder] = useState({});
 
   if (!open) return null;
 
@@ -14,9 +15,12 @@ const ModalAddOrder = ({ open, onClose, onAdd }) => {
     e.preventDefault();
 
     try {
+      const newOrderUpdate = newOrder;
+      newOrderUpdate.itemID = item._id;
+      newOrderUpdate.itemName = item.name;
       let res = await fetch("/api/v1/order", {
         method: "POST",
-        body: JSON.stringify({ itemID, itemName, supplier, quantity, price }),
+        body: JSON.stringify(newOrderUpdate),
         headers: {
           "content-type": "application/json",
           authorization: `bearer ${localStorage.getItem("jwt")}`,
@@ -26,7 +30,7 @@ const ModalAddOrder = ({ open, onClose, onAdd }) => {
         throw "You aren't able to add a order";
       }
       let data = await res.json();
-      console.log(data);
+      setNewOrder({});
       onClose();
       onAdd(data);
     } catch (err) {
@@ -50,36 +54,46 @@ const ModalAddOrder = ({ open, onClose, onAdd }) => {
           className="modal-container-input"
           placeholder="itemId"
           type="text"
-          value={itemID}
-          //   onChange={(e) => setSupplier(e.target.value)}
+          value={item._id}
         />
         <input
           className="modal-container-input"
           placeholder="itemName"
           type="text"
-          value={itemName}
-          //   onChange={(e) => setSupplier(e.target.value)}
+          value={item.name}
         />
         <input
           className="modal-container-input"
           placeholder="Supplier"
           type="text"
-          value={supplier}
-          onChange={(e) => setSupplier(e.target.value)}
+          value={newOrder.supplier}
+          onChange={(e) => {
+            const updatedNewOrder = { ...newOrder };
+            updatedNewOrder.supplier = e.target.value;
+            setNewOrder(updatedNewOrder);
+          }}
         />
         <input
           className="modal-container-input"
           placeholder="Quantity"
           type="text"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
+          value={newOrder.quantity}
+          onChange={(e) => {
+            const updatedNewOrder = { ...newOrder };
+            updatedNewOrder.quantity = e.target.value;
+            setNewOrder(updatedNewOrder);
+          }}
         />
         <input
           className="modal-container-input"
           placeholder="Total Price"
           type="number"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
+          value={newOrder.price}
+          onChange={(e) => {
+            const updatedNewOrder = { ...newOrder };
+            updatedNewOrder.price = e.target.value;
+            setNewOrder(updatedNewOrder);
+          }}
         />
         <div className="modal-bottom">
           <button className="modal-close-btn" onClick={onClose}>

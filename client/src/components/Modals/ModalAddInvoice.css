@@ -1,0 +1,9 @@
+.ordersDropdown {
+    width: 100%;    
+}
+
+.ordersDropdownContainer {
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 8px;
+}
