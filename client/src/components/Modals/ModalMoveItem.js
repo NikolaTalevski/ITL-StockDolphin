@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./ModalMoveItem.css";
 
 const ModalMoveItem = (props) => {
   const [categories, setCategories] = useState([]);
@@ -37,7 +38,7 @@ const ModalMoveItem = (props) => {
           <h4>Move Item</h4>
           <p onClick={() => closeModal()}>X</p>
         </header>
-        <h8>Select category:</h8>
+        <p className="move-paragraph">Select category:</p>
         <select
           className="ordersDropdown"
           name="ordersDropdown"
@@ -55,9 +56,9 @@ const ModalMoveItem = (props) => {
             }
           })}
         </select>
-        <div className="modal-bottom">
+        <div className="move-modal-bottom">
           <button
-            className="modal-add-btn"
+            className="move-modal-add-btn"
             onClick={() => {
               props.onClose();
               props.onMoveItem(categoryId);

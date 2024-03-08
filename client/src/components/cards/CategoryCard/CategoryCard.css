@@ -27,6 +27,10 @@
     padding-right: 5px;
 }
 
+.delbtn:hover {
+    cursor: pointer;
+}
+
 .upddelbtn {
     display: flex;
     justify-content: space-between;

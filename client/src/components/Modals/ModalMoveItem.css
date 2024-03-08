@@ -1,0 +1,18 @@
+.move-modal-bottom {
+    margin-top: 70px;
+    text-align: right;
+}
+
+.move-modal-add-btn{
+    cursor: pointer;
+    background-color: rgb(21, 157, 21);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 15px;
+    margin-right: 10px;
+    bottom: 15px;
+    right: 15px;
+    box-shadow: 2px 2px 2px 0.2px rgba(0, 0, 0, 0.2px);
+}

@@ -10,16 +10,18 @@ const ItemOverview = () => {
   const [item, setItem] = useState({});
   const [orders, setOrders] = useState([]);
   const [invoices, setInvoices] = useState([]);
+  const [suppliers, setSuppliers] = useState([]);
   const [openOrderModal, setOpenOrderModal] = useState(false);
   const [openInvoiceModal, setOpenInvoiceModal] = useState(false);
   const [openMoveItemModal, setOpenMoveItemModal] = useState(false);
   const [editedItem, setEditedItem] = useState({});
-  const [newOrders, setNewOrders] = useState(null);
+  // const [newOrders, setNewOrders] = useState(null);
   const itemId = useLocation().state.itemId;
   // const itemName = useLocation().state.itemName;
+  const categoryName = useLocation().state.categoryName;
 
   const OrderAdded = (newOrder) => {
-    setNewOrders(newOrder);
+    setOrders((currentOrders) => [...currentOrders, newOrder]);
   };
 
   useEffect(() => {
@@ -52,6 +54,19 @@ const ItemOverview = () => {
       })
       .catch((err) => console.err);
   }, [itemId]);
+
+  useEffect(() => {
+    fetch("/api/v1/supplier", {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("jwt")}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => setSuppliers(data))
+      .catch((err) => console.err);
+  }, []);
 
   useEffect(() => {
     getInvoices();
@@ -99,7 +114,7 @@ const ItemOverview = () => {
     <div>
       <header className="header">
         <h1>
-          Inventory {">"} {">"} {item.name}
+          Inventory {">"} {categoryName} {">"} {item.name}
         </h1>
       </header>
       <hr className="hr-header" />
@@ -144,7 +159,7 @@ const ItemOverview = () => {
             </button>
           </div>
           <hr className="hr" />
-          <OrdersList orders={orders} newOrder={newOrders} />
+          <OrdersList orders={orders} />
         </div>
         <div className="edit-item">
           <img
@@ -185,6 +200,7 @@ const ItemOverview = () => {
         open={openOrderModal}
         onClose={() => setOpenOrderModal(false)}
         item={item}
+        suppliers={suppliers}
       />
       <ModalMoveItem
         open={openMoveItemModal}

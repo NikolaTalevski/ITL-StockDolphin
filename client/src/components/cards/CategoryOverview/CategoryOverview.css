@@ -46,6 +46,10 @@
     padding-right: 5px;
 }
 
+.del-btn-item:hover {
+    cursor: pointer;
+}
+
 .delete-icon-item{
     width: 30px;
     height: 30px;

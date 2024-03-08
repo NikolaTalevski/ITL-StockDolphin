@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 
-const ModalAddOrder = ({ open, onClose, onAdd, item }) => {
-  const [supplier, setSupplier] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [price, setPrice] = useState("");
-  const itemID = useLocation().state.itemId;
-  const itemName = useLocation().state.itemName;
+const ModalAddOrder = ({ open, onClose, onAdd, item, suppliers }) => {
+  // const [supplier, setSupplier] = useState("");
+  // const [quantity, setQuantity] = useState("");
+  // const [price, setPrice] = useState("");
+  // const itemID = useLocation().state.itemId;
+  // const itemName = useLocation().state.itemName;
   const [newOrder, setNewOrder] = useState({});
 
   if (!open) return null;
@@ -50,7 +50,7 @@ const ModalAddOrder = ({ open, onClose, onAdd, item }) => {
           <h4>Add Order</h4>
           <p onClick={onClose}>X</p>
         </header>
-        <input
+        {/* <input
           className="modal-container-input"
           placeholder="itemId"
           type="text"
@@ -61,8 +61,8 @@ const ModalAddOrder = ({ open, onClose, onAdd, item }) => {
           placeholder="itemName"
           type="text"
           value={item.name}
-        />
-        {/* <div className="ordersDropdownContainer">
+        /> */}
+        <div className="ordersDropdownContainer">
           <select
             className="ordersDropdown"
             name="ordersDropdown"
@@ -73,12 +73,12 @@ const ModalAddOrder = ({ open, onClose, onAdd, item }) => {
             }}
           >
             <option value="">Select supplier</option>
-            {supplier.map((s) => {
-              return <option value={s._id}>{supplier}</option>;
+            {suppliers.map((s) => {
+              return <option value={s.name}>{s.name}</option>;
             })}
           </select>
-        </div> */}
-        <input
+        </div>
+        {/* <input
           className="modal-container-input"
           placeholder="Supplier"
           type="text"
@@ -88,7 +88,7 @@ const ModalAddOrder = ({ open, onClose, onAdd, item }) => {
             updatedNewOrder.supplier = e.target.value;
             setNewOrder(updatedNewOrder);
           }}
-        />
+        /> */}
         <input
           className="modal-container-input"
           placeholder="Quantity"

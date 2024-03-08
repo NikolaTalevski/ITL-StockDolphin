@@ -6,6 +6,7 @@ const ItemsList = (props) => {
   const [items, setItems] = useState([]);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
+  const categoryName = useLocation().state.categoryName;
   const categoryId = useLocation().state.categoryId;
   const noimg = require("../../../images/no-img.png");
 
@@ -59,7 +60,7 @@ const ItemsList = (props) => {
           <NavLink
             className="navlink-item"
             to="/inventory/category/item"
-            state={{ itemId: item._id }}
+            state={{ itemId: item._id, categoryName: categoryName }}
           >
             <img alt="Item-Img" src={noimg} className="itemcard-img" />
             <div>
