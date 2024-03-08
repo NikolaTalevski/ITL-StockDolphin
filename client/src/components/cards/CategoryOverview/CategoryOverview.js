@@ -6,7 +6,7 @@ import ModalAddItem from "../../Modals/ModalAddItem";
 import ModalEditCategory from "../../Modals/ModalEditCategory";
 import ItemsList from "./ItemsList";
 
-const CategoryOverview = () => {
+const CategoryOverview = (props) => {
   const [newItems, setNewItems] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [category, setCategory] = useState("");

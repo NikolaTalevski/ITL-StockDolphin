@@ -99,7 +99,7 @@ const ItemOverview = () => {
     <div>
       <header className="header">
         <h1>
-          Inventory {">"} {item.name}
+          Inventory {">"} {">"} {item.name}
         </h1>
       </header>
       <hr className="hr-header" />

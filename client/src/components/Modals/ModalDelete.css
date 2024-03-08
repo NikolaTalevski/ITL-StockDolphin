@@ -1,3 +1,28 @@
+.modal-container-del-header {
+    background-color: white;
+    color: black;
+    text-align: center;
+}
+
+.del-modal-btns {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.modal-del-container {
+    background: #fff;
+    padding-top: 0px;
+    border: 1px solid black;
+    border-radius: 10px;
+    max-width: 250px;
+    height: 150px;
+    position: relative;
+    font-size: 16px;
+    margin: 0 auto;
+    margin-top: 200px;
+}
+
+
 /* .modal-container {
     display: none;
     position: fixed;

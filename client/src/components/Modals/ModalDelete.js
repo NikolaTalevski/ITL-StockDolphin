@@ -15,15 +15,17 @@ const ModalDelete = ({ open, onClose, onDelete, text }) => {
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className="modal-container"
+        className="modal-del-container"
       >
-        <p className="modal-container-header">{text}</p>
-        <button className="modal-close-btn" onClick={onClose}>
-          Cancel
-        </button>
-        <button className="modal-add-btn" onClick={handleConfirm}>
-          Delete
-        </button>
+        <p className="modal-container-del-header">{text}</p>
+        <div className="del-modal-btns">
+          <button className="modal-close-btn" onClick={onClose}>
+            Cancel
+          </button>
+          <button className="modal-add-btn" onClick={handleConfirm}>
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );

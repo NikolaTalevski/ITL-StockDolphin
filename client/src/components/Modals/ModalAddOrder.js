@@ -62,6 +62,22 @@ const ModalAddOrder = ({ open, onClose, onAdd, item }) => {
           type="text"
           value={item.name}
         />
+        {/* <div className="ordersDropdownContainer">
+          <select
+            className="ordersDropdown"
+            name="ordersDropdown"
+            onChange={(e) => {
+              const updatedNewOrder = { ...newOrder };
+              updatedNewOrder.supplier = e.target.value;
+              setNewOrder(updatedNewOrder);
+            }}
+          >
+            <option value="">Select supplier</option>
+            {supplier.map((s) => {
+              return <option value={s._id}>{supplier}</option>;
+            })}
+          </select>
+        </div> */}
         <input
           className="modal-container-input"
           placeholder="Supplier"
