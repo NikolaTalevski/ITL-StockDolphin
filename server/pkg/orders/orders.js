@@ -9,13 +9,27 @@ const {
 } = require("../recent-activity/model");
 const { getOneUser } = require("../users/users");
 const { getOneItem } = require("../items/items");
+const { Item } = require("../items/model");
 
 const getAllOrdersByItemId = async (itemId) => {
   return await Order.find({ itemID: itemId });
 };
 
 const getAllOrders = async (user_id) => {
-  return await Order.find({ user_id });
+  const orders = await Order.find({ user_id });
+
+  const ordersWithData = await Promise.all(
+    orders.map(async (order) => {
+      const { itemID, ...orderWithoutItemId } = order.toObject();
+      const item = await Item.findOne({ _id: order.itemID });
+      return {
+        ...orderWithoutItemId,
+        item: item.toObject(),
+      };
+    })
+  );
+
+  return ordersWithData;
 };
 
 const getOneOrder = async (user_id, id) => {
