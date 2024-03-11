@@ -199,7 +199,7 @@ const ItemOverview = () => {
         onAdd={OrderAdded}
         open={openOrderModal}
         onClose={() => setOpenOrderModal(false)}
-        item={item}
+        itemId={item._id}
         suppliers={suppliers}
       />
       <ModalMoveItem

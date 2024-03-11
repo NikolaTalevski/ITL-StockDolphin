@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import { useLocation } from "react-router-dom";
 
-const ModalAddOrder = ({ open, onClose, onAdd, item, suppliers }) => {
+const ModalAddOrder = ({ open, onClose, onAdd, itemId, suppliers }) => {
   // const [supplier, setSupplier] = useState("");
   // const [quantity, setQuantity] = useState("");
   // const [price, setPrice] = useState("");
@@ -16,8 +16,8 @@ const ModalAddOrder = ({ open, onClose, onAdd, item, suppliers }) => {
 
     try {
       const newOrderUpdate = newOrder;
-      newOrderUpdate.itemID = item._id;
-      newOrderUpdate.itemName = item.name;
+      newOrderUpdate.itemID = itemId;
+      // newOrderUpdate.itemName = item.name;
       let res = await fetch("/api/v1/order", {
         method: "POST",
         body: JSON.stringify(newOrderUpdate),

@@ -9,9 +9,10 @@ import Inventory from "./components/pages/Inventory";
 import Reports from "./components/pages/Reports";
 import Suppliers from "./components/pages/Suppliers";
 import Activityhistory from "./components/pages/Activityhistory";
-import Inventorysummary from "./components/pages/Inventorysummary";
+// import InventorySummary from "./components/pages/InventorySummary";
 import CategoryOverview from "./components/cards/CategoryOverview/CategoryOverview";
 import ItemOverview from "./components/cards/ItemOverview/ItemOverview";
+import InventorySummary from "./components/pages/Inventorysummary";
 
 function App() {
   return (
@@ -28,8 +29,8 @@ function App() {
           <Route path="suppliers" element={<Suppliers />} />
           <Route path="reports/activityhistory" element={<Activityhistory />} />
           <Route
-            path="reports/inventorysummary"
-            element={<Inventorysummary />}
+            path="reports/inventorySummary"
+            element={<InventorySummary />}
           />
         </Route>
       </Routes>
