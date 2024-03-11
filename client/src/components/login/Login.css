@@ -1,10 +1,19 @@
 .login {
     width: 300px;
     height: 350px;
-    background-color: rgb(113, 250, 113);
+    background-color: rgba(83, 168, 86, 1);
     margin: 0 auto;
+    margin-top: 50px;
     border: 2px solid black;
     border-radius: 10px;
+}
+
+.top-signin {
+    color: white;
+}
+
+.p-acc {
+    color: white;
 }
 
 /* .login-form {
@@ -65,7 +74,7 @@
 .success {
     width: 300px;
     height: 100px;
-    background-color: rgb(111, 252, 111);
+    background-color: rgba(83, 168, 86, 1);
     margin: 0 auto;
     border: 2px solid black;
     border-radius: 10px;

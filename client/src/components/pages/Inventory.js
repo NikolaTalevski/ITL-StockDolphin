@@ -95,8 +95,8 @@ const Inventory = () => {
   }, []);
 
   return (
-    <div>
-      <header className="">
+    <div className="inventory-container">
+      <header className="header">
         <h1>Inventory </h1>
       </header>
       <hr />

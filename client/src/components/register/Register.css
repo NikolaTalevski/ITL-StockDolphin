@@ -1,8 +1,9 @@
 .register {
     width: 300px;
     height: 400px;
-    background-color: rgb(113, 250, 113);
+    background-color: rgba(83, 168, 86, 1);
     margin: 0 auto;
+    margin-top: 50px;
     border: 2px solid black;
     border-radius: 10px;
 }
@@ -12,6 +13,10 @@
     padding: 10px;
     border: 1px solid black;
     border-radius: 10px;
+}
+
+.label {
+    color: white;
 }
 
 .btn {
@@ -49,7 +54,7 @@
 .success {
     width: 300px;
     height: 100px;
-    background-color: rgb(111, 252, 111);
+    background-color: rgba(83, 168, 86, 1);
     margin: 0 auto;
     border: 2px solid black;
     border-radius: 10px;
@@ -69,4 +74,12 @@
     cursor: pointer;
     font-size: 15px;
     background-color: rgb(180, 176, 176);
+}
+
+.p-reg {
+    color: white;
+}
+
+.top-signup {
+    color: white;
 }

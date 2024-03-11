@@ -32,7 +32,12 @@ const ModalAddSupplier = ({ open, onClose, onAdd }) => {
     }
   };
   return (
-    <div onClick={onClose} className="overlay">
+    <div
+      onClick={() => {
+        onClose();
+      }}
+      className="overlay"
+    >
       <div
         onClick={(e) => {
           e.stopPropagation();

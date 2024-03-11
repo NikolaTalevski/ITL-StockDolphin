@@ -112,14 +112,20 @@ const SupplierList = (props) => {
           </p>
           <hr></hr>
           <div className="supplierbtn">
-            <button onClick={() => handleEditClick(supplier)}>
+            <button
+              className="edit-supp-btn"
+              onClick={() => handleEditClick(supplier)}
+            >
               <img
                 className="editbtn"
                 src={require("../../../images/editbtn.png")}
                 alt="editbtn"
               />
             </button>
-            <button onClick={() => handleDeleteClick(supplier._id)}>
+            <button
+              className="del-supp-btn"
+              onClick={() => handleDeleteClick(supplier._id)}
+            >
               <img
                 className="deletebtn"
                 src={require("../../../images/deletebtn.png")}

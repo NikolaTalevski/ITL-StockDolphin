@@ -6,3 +6,7 @@
 .inventory-info p {
     margin-right: 50px;
 }
+
+.inventory-container {
+    padding: 20px;
+}

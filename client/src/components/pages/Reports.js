@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 
 const Reports = () => {
   return (
-    <div>
-      <header className="">
+    <div className="reports-container">
+      <header className="header">
         <h1>Reports </h1>
-        <hr></hr>
       </header>
+      <hr />
       <div className="reports">
         <div className="activityhistory">
           <img

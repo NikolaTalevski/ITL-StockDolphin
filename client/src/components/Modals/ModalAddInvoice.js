@@ -61,7 +61,7 @@ const ModalAddInvoice = (props) => {
             setInvoice(updatedInvoice);
           }}
         />
-        <input
+        {/* <input
           className="modal-container-input"
           placeholder="Supplier"
           type="text"
@@ -71,7 +71,7 @@ const ModalAddInvoice = (props) => {
             updatedInvoice.supplier = e.target.value;
             setInvoice(updatedInvoice);
           }}
-        />
+        /> */}
         <div className="ordersDropdownContainer">
           <select
             className="ordersDropdown"

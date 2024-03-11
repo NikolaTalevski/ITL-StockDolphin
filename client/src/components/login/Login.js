@@ -54,7 +54,7 @@ const Login = () => {
         </section>
       ) : (
         <section className="login">
-          <h1 className="top">Sign In</h1>
+          <h1 className="top-signin">Sign In</h1>
           <form onSubmit={handleSubmit} className="login-form">
             <input
               className="input-field"
@@ -88,7 +88,7 @@ const Login = () => {
             <br />
             <button className="btn">Sign In</button>
           </form>
-          <p>
+          <p className="p-acc">
             Don't have an account? <br />
             <span className="btn-signup">
               {/* put router link here */}

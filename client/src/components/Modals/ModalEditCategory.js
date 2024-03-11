@@ -17,7 +17,12 @@ const ModalEditCategory = ({ open, onClose, onUpdate, category }) => {
   };
 
   return (
-    <div className="overlay">
+    <div
+      className="overlay"
+      onClick={() => {
+        onClose();
+      }}
+    >
       <div
         onClick={(e) => {
           e.stopPropagation();

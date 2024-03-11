@@ -3,3 +3,7 @@
     margin-left: 200px;
     background-color: rgb(35, 130, 213);
 }
+
+.inventory-summary-container {
+    padding: 20px;
+}

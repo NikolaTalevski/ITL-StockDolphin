@@ -12,11 +12,11 @@ const Suppliers = () => {
     setNewSupplies(s);
   };
   return (
-    <div>
-      <header className="">
+    <div className="suppliers-container">
+      <header className="header">
         <h1>Suppliers </h1>
-        <hr></hr>
       </header>
+      <hr />
       <div className="top-btn">
         <div className="search">
           <img src={require("../../images/search.png")} alt="search" />

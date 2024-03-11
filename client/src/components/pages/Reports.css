@@ -1,3 +1,8 @@
+
+.reports-container{
+    padding: 20px;
+}
+
 .activityhistory {
     display: flex;
 }

@@ -43,9 +43,11 @@ const Register = () => {
         </section>
       ) : (
         <section className="register">
-          <h1 className="top">Sign Up</h1>
+          <h1 className="top-signup">Sign Up</h1>
           <form onSubmit={handleSubmit} className="register-form">
-            <label htmlFor="username">Username:</label>
+            <label className="label" htmlFor="username">
+              Username:
+            </label>
             <br />
             <input
               className="input-field"
@@ -56,7 +58,10 @@ const Register = () => {
               required
             />{" "}
             <br />
-            <label htmlFor="email">Email:</label> <br />
+            <label className="label" htmlFor="email">
+              Email:
+            </label>{" "}
+            <br />
             <input
               className="input-field"
               type="email"
@@ -66,7 +71,10 @@ const Register = () => {
               required
             />{" "}
             <br />
-            <label htmlFor="password">Password:</label> <br />
+            <label className="label" htmlFor="password">
+              Password:
+            </label>{" "}
+            <br />
             <input
               className="input-field"
               type="password"
@@ -78,7 +86,7 @@ const Register = () => {
             <br />
             <button className="btn">Sign Up</button>
           </form>
-          <p>
+          <p className="p-reg">
             Already registered? <br />
             <span className="btn-signin">
               {/* put router link here */}

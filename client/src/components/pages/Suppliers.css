@@ -2,6 +2,10 @@
     /* margin-left: 150px; */
 }
 
+.suppliers-container {
+    padding: 20px;
+}
+
 .search {
     background-color: rgb(220, 217, 217);
     border: 1px solid black;

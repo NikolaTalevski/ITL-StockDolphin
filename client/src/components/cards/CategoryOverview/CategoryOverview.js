@@ -58,8 +58,8 @@ const CategoryOverview = (props) => {
 
   return (
     <>
-      <div>
-        <h1>
+      <div className="category-overview-container">
+        <h1 className="header">
           Inventory {">"} {category.name}
         </h1>
         <hr />

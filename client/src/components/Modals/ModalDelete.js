@@ -1,5 +1,6 @@
 import React from "react";
 import "./ModalDelete.css";
+import "./ModalEditSupplier.css";
 
 const ModalDelete = ({ open, onClose, onDelete, text }) => {
   if (!open) return null;
@@ -10,7 +11,7 @@ const ModalDelete = ({ open, onClose, onDelete, text }) => {
   };
 
   return (
-    <div onClick={onClose} className="overlay">
+    <div onClick={onClose} className="overlay-e">
       <div
         onClick={(e) => {
           e.stopPropagation();
