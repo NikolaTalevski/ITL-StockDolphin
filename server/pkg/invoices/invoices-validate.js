@@ -1,6 +1,6 @@
 const invoicePOST = {
   name: "required|string",
-  supplier: "required|string",
+  supplier: "string",
   date: "date",
   orders: "required|array",
 };
