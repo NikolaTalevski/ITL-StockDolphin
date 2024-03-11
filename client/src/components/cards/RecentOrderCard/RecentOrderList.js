@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./RecentOrderList.css";
+// import { Carousel } from "react-responsive-carousel";
+// import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const RecentOrdersList = () => {
   const [recentOrders, setRecentOrders] = useState([]);
@@ -20,7 +22,20 @@ const RecentOrdersList = () => {
 
   return (
     <div className="recentordercard-container">
-      {recentOrders.map((recentOrder) => (
+      {/* <Carousel
+        showArrows={true}
+        showStatus={false}
+        showIndicators={false}
+        infiniteLoop={true}
+        useKeyboardArrows={true}
+        autoPlay={false}
+        interval={5000}
+        stopOnHover={true}
+        swipeable={true}
+        emulateTouch={true}
+        showThumbs={false}
+      > */}
+      {recentOrders.slice(-4).map((recentOrder) => (
         <div key={recentOrder._id} className="recentordercard">
           <img src={noimg} alt="Order-Img" className="recentordercard-img" />
 
@@ -32,6 +47,7 @@ const RecentOrdersList = () => {
           </div>
         </div>
       ))}
+      {/* </Carousel> */}
     </div>
   );
 };

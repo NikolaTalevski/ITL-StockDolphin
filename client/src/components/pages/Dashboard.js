@@ -8,10 +8,6 @@ import RecentActivity from "../RecentActivity/RecentActivity";
 import RecentOrdersList from "../cards/RecentOrderCard/RecentOrderList";
 
 const Dashboard = () => {
-  // const mouse = require("../../images/mouse.png");
-  // const a4paper = require("../../images/a4paper.png");
-  // const espresso = require("../../images/espresso.png");
-  // const pens = require("../../images/pens.png");
   const [username, setUsername] = useState("");
 
   useEffect(() => {
@@ -52,12 +48,6 @@ const Dashboard = () => {
         <div className="recent-orders section">
           <h3>Recent orders</h3>
           <div className="cards">
-            {/* <ItemCard
-            img={mouse}
-            title={"Office Mouse"}
-            items={"7 Units"}
-            price={"$133.00"}
-          /> */}
             <RecentOrdersList />
           </div>
         </div>
