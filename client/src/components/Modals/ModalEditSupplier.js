@@ -23,7 +23,7 @@ const ModalEditSupplier = ({ open, onClose, onUpdate, supplier }) => {
   };
 
   return (
-    <div onClick={onClose} className="overlay">
+    <div onClick={onClose} className="overlay-e">
       <div
         onClick={(e) => {
           e.stopPropagation();
