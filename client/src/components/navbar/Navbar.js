@@ -16,11 +16,13 @@ const Navbar = () => {
   return (
     <section className="nav-bar-container">
       <nav className="nav-bar-menu-buttons-container">
-        <img
-          className="logo"
-          src={require("../../images/logo1.png")}
-          alt="logo"
-        />
+        <NavLink to="/dashboard">
+          <img
+            className="logo"
+            src={require("../../images/logo1.png")}
+            alt="logo"
+          />
+        </NavLink>
 
         <div className="nav-bar-button">
           <img
@@ -29,11 +31,7 @@ const Navbar = () => {
             width={40}
             height={40}
           />
-          <NavLink
-            className="navlink"
-            // className={({ isActive }) => (isActive ? "link active" : "link")}
-            to="/dashboard"
-          >
+          <NavLink className="navlink" to="/dashboard">
             Dashboard
           </NavLink>
         </div>

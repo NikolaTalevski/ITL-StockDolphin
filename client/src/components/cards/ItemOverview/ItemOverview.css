@@ -16,7 +16,6 @@
 .order-overview {
     display: flex;
     margin-left: 50px;
-    /* margin-top: 50px; */
     margin-bottom: 20px;
 }
 
@@ -32,8 +31,6 @@
     padding: 10px;
     width: 170px;
     margin-left: 750px;
-    /* margin-top: 50px; */
-    /* margin-right: 100px; */
 }
 
 .add-ord-btn:hover {
@@ -53,10 +50,7 @@
     justify-content: space-between;
     
 }
-/* 
-.ord-inv > h1 {
-    font-size: 40px;
-} */
+
 
 .ord-inv > * {
     vertical-align: middle;

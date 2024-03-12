@@ -3,13 +3,15 @@
     text-align: center;
 }
 
-.header, .section-container {
+.header {
     display: flex;
     justify-content: space-between;
 }
 
 .section-container {
-    margin-left: 200px;
+    /* margin-left: 200px; */
+    display: flex;
+    justify-content: center;
 }
 
 .section {
@@ -23,12 +25,12 @@
 }
 
 .inventory-summary h3, .recent-activity h3, .recent-orders h3 {
-    margin-left: 100px;
+    /* margin-left: 100px; */
     text-align: left;
 }
 
 .activities {
-    margin-left: 100px;
+    /* margin-left: 100px; */
     text-align: left;
 }
 
@@ -46,7 +48,7 @@
 .cards {
     /* padding: 0 40px; */
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 

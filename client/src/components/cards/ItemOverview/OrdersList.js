@@ -9,11 +9,6 @@ const OrdersList = (props) => {
     setOrders(props.orders);
   }, [props.orders]);
 
-  // useEffect(() => {
-  //   if (props.newOrder !== null)
-  //     setOrders((currentOrders) => [...currentOrders, props.newOrder]);
-  // }, [props.newOrder]);
-
   return (
     <table id="orderList" className="myTable">
       <thead>

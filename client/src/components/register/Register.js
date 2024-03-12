@@ -89,7 +89,6 @@ const Register = () => {
           <p className="p-reg">
             Already registered? <br />
             <span className="btn-signin">
-              {/* put router link here */}
               <Link to="/login">Sign In</Link>
             </span>
           </p>

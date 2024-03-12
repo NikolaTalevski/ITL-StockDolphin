@@ -13,25 +13,6 @@ const ModalEditSupplier = ({ open, onClose, onUpdate, supplier }) => {
       setEditedPhonenumber(supplier.phonenumber);
       setEditedEmail(supplier.email);
     }
-    // const fetchSupplier = async () => {
-    //   try {
-    //     const res = await fetch(`/api/v1/supplier/${id}`, {
-    //       method: "GET",
-    //       headers: {
-    //         "content-type": "application/json",
-    //         authorization: `bearer ${localStorage.getItem("jwt")}`,
-    //       },
-    //     });
-    //     if (!res.ok) {
-    //       throw new Error("Failed to fetch supplier");
-    //     }
-    //     const data = await res.json();
-    //     setSupplier(data);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // };
-    // fetchSupplier();
   }, [supplier]);
 
   if (!open) return null;
@@ -40,27 +21,6 @@ const ModalEditSupplier = ({ open, onClose, onUpdate, supplier }) => {
     onUpdate(editedName, editedAddress, editedPhonenumber, editedEmail);
     onClose();
   };
-
-  // const EditSupplier = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     const res = await fetch(`/api/v1/supplier/${id}`, {
-  //       method: "PUT",
-  //       headers: {
-  //         "content-type": "application/json",
-  //         authorization: `bearer ${localStorage.getItem("jwt")}`,
-  //       },
-  //       body: JSON.stringify(supplier),
-  //     });
-  //     if (!res.ok) {
-  //       throw new Error(`Failed to update supplier: ${res.statusText} `);
-  //     }
-  //     onClose();
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
 
   return (
     <div onClick={onClose} className="overlay">

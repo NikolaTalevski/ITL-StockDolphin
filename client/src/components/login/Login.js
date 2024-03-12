@@ -91,7 +91,6 @@ const Login = () => {
           <p className="p-acc">
             Don't have an account? <br />
             <span className="btn-signup">
-              {/* put router link here */}
               <Link to="/register">Sign Up</Link>
             </span>
           </p>

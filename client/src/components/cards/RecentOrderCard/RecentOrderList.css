@@ -1,13 +1,16 @@
 .recentordercard-container {
 	display: flex;
 	justify-content: space-around;
-	/* flex-wrap: wrap; */
-	/* justify-content: left; */
 	margin-left: 150px;
 }
 
+.carousel-container {
+	display: inline-block;
+	width: 100%;
+	overflow: hidden;
+}
+
 .recentordercard {
-	margin-right: 50px;
 	width: 100px;
 	height: 110px;
 	background-color: white;

@@ -15,9 +15,7 @@ const ItemOverview = () => {
   const [openInvoiceModal, setOpenInvoiceModal] = useState(false);
   const [openMoveItemModal, setOpenMoveItemModal] = useState(false);
   const [editedItem, setEditedItem] = useState({});
-  // const [newOrders, setNewOrders] = useState(null);
   const itemId = useLocation().state.itemId;
-  // const itemName = useLocation().state.itemName;
   const categoryName = useLocation().state.categoryName;
 
   const OrderAdded = (newOrder) => {
@@ -50,7 +48,7 @@ const ItemOverview = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        setOrders(data.filter((o) => o.itemID === itemId));
+        setOrders(data.filter((o) => o.item._id === itemId));
       })
       .catch((err) => console.err);
   }, [itemId]);

@@ -2,11 +2,6 @@ import React, { useState } from "react";
 // import { useLocation } from "react-router-dom";
 
 const ModalAddOrder = ({ open, onClose, onAdd, itemId, suppliers }) => {
-  // const [supplier, setSupplier] = useState("");
-  // const [quantity, setQuantity] = useState("");
-  // const [price, setPrice] = useState("");
-  // const itemID = useLocation().state.itemId;
-  // const itemName = useLocation().state.itemName;
   const [newOrder, setNewOrder] = useState({});
 
   if (!open) return null;
@@ -17,7 +12,7 @@ const ModalAddOrder = ({ open, onClose, onAdd, itemId, suppliers }) => {
     try {
       const newOrderUpdate = newOrder;
       newOrderUpdate.itemID = itemId;
-      // newOrderUpdate.itemName = item.name;
+
       let res = await fetch("/api/v1/order", {
         method: "POST",
         body: JSON.stringify(newOrderUpdate),
@@ -50,18 +45,7 @@ const ModalAddOrder = ({ open, onClose, onAdd, itemId, suppliers }) => {
           <h4>Add Order</h4>
           <p onClick={onClose}>X</p>
         </header>
-        {/* <input
-          className="modal-container-input"
-          placeholder="itemId"
-          type="text"
-          value={item._id}
-        />
-        <input
-          className="modal-container-input"
-          placeholder="itemName"
-          type="text"
-          value={item.name}
-        /> */}
+
         <div className="ordersDropdownContainer">
           <select
             className="ordersDropdown"
@@ -78,17 +62,7 @@ const ModalAddOrder = ({ open, onClose, onAdd, itemId, suppliers }) => {
             })}
           </select>
         </div>
-        {/* <input
-          className="modal-container-input"
-          placeholder="Supplier"
-          type="text"
-          value={newOrder.supplier}
-          onChange={(e) => {
-            const updatedNewOrder = { ...newOrder };
-            updatedNewOrder.supplier = e.target.value;
-            setNewOrder(updatedNewOrder);
-          }}
-        /> */}
+
         <input
           className="modal-container-input"
           placeholder="Quantity"
