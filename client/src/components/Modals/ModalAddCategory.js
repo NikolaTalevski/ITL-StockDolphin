@@ -25,13 +25,20 @@ const ModalAddCategory = ({ open, onClose, onAdd }) => {
       console.log(data);
       onClose();
       onAdd(data);
+      setName("");
     } catch (err) {
       alert(err);
     }
   };
 
   return (
-    <div onClick={onClose} className="overlay">
+    <div
+      onClick={() => {
+        setName("");
+        onClose();
+      }}
+      className="overlay"
+    >
       <div
         onClick={(e) => {
           e.stopPropagation();
@@ -40,7 +47,14 @@ const ModalAddCategory = ({ open, onClose, onAdd }) => {
       >
         <header className="modal-container-header">
           <h4>Add Category</h4>
-          <p onClick={onClose}>X</p>
+          <p
+            onClick={() => {
+              setName("");
+              onClose();
+            }}
+          >
+            X
+          </p>
         </header>
         <input
           className="modal-container-input"
@@ -54,7 +68,13 @@ const ModalAddCategory = ({ open, onClose, onAdd }) => {
         <button className="modal-container-btn">(Add Photo, 2MB Total)</button>
         <hr></hr>
         <div className="modal-bottom">
-          <button className="modal-close-btn" onClick={onClose}>
+          <button
+            className="modal-close-btn"
+            onClick={() => {
+              setName("");
+              onClose();
+            }}
+          >
             CANCEL
           </button>
           <button className="modal-add-btn" onClick={AddCategory}>

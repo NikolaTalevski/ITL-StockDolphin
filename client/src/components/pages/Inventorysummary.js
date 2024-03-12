@@ -150,7 +150,7 @@ const InventorySummary = () => {
     }
 
     chartData.labels = datesWithOrdersPlaced.map((o) =>
-      o.toLocaleDateString("de-DE", {
+      o.toLocaleDateString("mk-MK", {
         day: "2-digit",
         month: "2-digit",
         year: "numeric",

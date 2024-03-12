@@ -18,7 +18,7 @@ const RecentActivity = () => {
     };
 
     fetchActivity();
-    const intervalId = setInterval(fetchActivity, 1000000);
+    const intervalId = setInterval(fetchActivity, 60000);
 
     return () => {
       clearInterval(intervalId);

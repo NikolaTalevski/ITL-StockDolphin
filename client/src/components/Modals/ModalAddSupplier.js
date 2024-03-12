@@ -27,6 +27,10 @@ const ModalAddSupplier = ({ open, onClose, onAdd }) => {
       console.log(data);
       onClose();
       onAdd(data);
+      setName("");
+      setAddress("");
+      setPhonenumber("");
+      setEmail("");
     } catch (err) {
       alert(err);
     }
@@ -34,6 +38,10 @@ const ModalAddSupplier = ({ open, onClose, onAdd }) => {
   return (
     <div
       onClick={() => {
+        setName("");
+        setAddress("");
+        setPhonenumber("");
+        setEmail("");
         onClose();
       }}
       className="overlay"
@@ -46,7 +54,17 @@ const ModalAddSupplier = ({ open, onClose, onAdd }) => {
       >
         <header className="modal-container-header">
           <h4>Add Supplier</h4>
-          <p onClick={onClose}>X</p>
+          <p
+            onClick={() => {
+              setName("");
+              setAddress("");
+              setPhonenumber("");
+              setEmail("");
+              onClose();
+            }}
+          >
+            X
+          </p>
         </header>
         <input
           className="modal-container-input"
@@ -77,7 +95,16 @@ const ModalAddSupplier = ({ open, onClose, onAdd }) => {
           onChange={(e) => setEmail(e.target.value)}
         />
         <div className="modal-bottom">
-          <button className="modal-close-btn" onClick={onClose}>
+          <button
+            className="modal-close-btn"
+            onClick={() => {
+              setName("");
+              setAddress("");
+              setPhonenumber("");
+              setEmail("");
+              onClose();
+            }}
+          >
             CANCEL
           </button>
           <button className="modal-add-btn" onClick={AddSupplier}>
