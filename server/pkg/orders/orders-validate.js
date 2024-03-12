@@ -1,6 +1,5 @@
 const orderPOST = {
   itemID: "required|string",
-  // itemName: "required|string",
   supplier: "required|string",
   quantity: "required|string",
   price: "required|string",
@@ -8,7 +7,6 @@ const orderPOST = {
 };
 
 const orderPUT = {
-  // itemName: "string",
   supplier: "string",
   quantity: "string",
   price: "string",

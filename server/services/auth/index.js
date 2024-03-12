@@ -21,8 +21,8 @@ api.use(
   })
 );
 
-api.post("/api/v1/auth/register", auth.register); // raboti
-api.post("/api/v1/auth/login", auth.login); // raboti
+api.post("/api/v1/auth/register", auth.register);
+api.post("/api/v1/auth/login", auth.login);
 api.post("/api/v1/auth/refreshToken", auth.refreshToken);
 api.post("/api/v1/auth/resetPassword", auth.resetPassword);
 

@@ -15,11 +15,11 @@ api.use(
   })
 );
 
-api.get("/api/v1/item", item.getAllItemsHandler); // raboti
-api.get("/api/v1/item/:id", item.getOneItemHandler); // raboti
-api.post("/api/v1/item", item.createItemHandler); // raboti
-api.put("/api/v1/item/:id", item.updateItemHandler); // raboti
-api.delete("/api/v1/item/:id", item.removeItemHandler); // raboti
+api.get("/api/v1/item", item.getAllItemsHandler);
+api.get("/api/v1/item/:id", item.getOneItemHandler);
+api.post("/api/v1/item", item.createItemHandler);
+api.put("/api/v1/item/:id", item.updateItemHandler);
+api.delete("/api/v1/item/:id", item.removeItemHandler);
 
 api.use(function (err, req, res, next) {
   if (err.name === "UnauthorizedError") {

@@ -10,14 +10,6 @@ const express = require("express");
 
 const api = express();
 
-// const recentActivity = [];
-
-// api.post("/api/v1/recent-activity", (req, res) => {
-//   const activity = req.body;
-//   recentActivity.unshift(activity);
-//   res.status(201).send("Activity added successfully");
-// });
-
 api.get("/api/v1/recent-activity", getRecentActivity);
 api.get("/api/v1/recent-activity/history", getRecentActivityHistory);
 
